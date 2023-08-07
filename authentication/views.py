@@ -41,7 +41,7 @@ def authregistration(request):
                 registration_user = User.objects.create_user(username=registration_username, password=registration_password, email=registration_email)
                 registration_user.save()
                 messages.success(request, 'You have Successfully Registered')
-                return redirect("login")
+                return redirect("home")
             
         else:
             messages.error(request, 'Password and Conform Password Not Matched')            
@@ -60,7 +60,7 @@ def authlogin(request):
 
         if auth_user is not None:
             login(request, auth_user)
-            return redirect('logout')
+            return redirect('home')
         
         # To display error message for invalid Email or Password
         else:

@@ -43,7 +43,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Local Apps (My project's apps)
     'authentication',
+
+    # Third-Party Apps
+    'rest_framework',
+    'rest_framework.authtoken',
 ]
 
 AUTH_USER_MODEL='authentication.User'
@@ -93,7 +99,6 @@ DATABASES = {
 }
 
 '''
-
 
 DATABASES = {
     'default': {
@@ -162,4 +167,11 @@ MESSAGE_TAGS = {
     messages.SUCCESS: 'alert-success',
     messages.WARNING: 'alert-warning',
     messages.ERROR: 'alert-danger',
+}
+
+# The default authentication schemes for TokenAuthentication Django Rest Framework
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ]
 }
