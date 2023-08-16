@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+{% load crispy_forms_tags %}
+
+    {% block title %}   
+        Sports Form
+    {% endblock %}
+
+    {% block body_block %}
+
+        {% load static %}
+        <br><br><br>
+
+        <h2>Sports Form</h2>
+
+        <div class = "form-group">
+
+          <form method="POST" enctype="multipart/form-data">
+
+    
+              {% csrf_token %}
+              {{sports_form|crispy}}
+
+              <input type="submit" name="submit" value="Add Sport" class="btn btn-primary btn-sm">
+
+              <br>
+
+          </form>
+
+      </div>
+
+    {% endblock %}

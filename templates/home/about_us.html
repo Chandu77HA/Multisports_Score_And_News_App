@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+
+Home Page
+
+{% endblock %}
+
+{% block body_block %}
+
+{% load static %}
+
+    <br>
+
+  <!-- ======= About Us Section ======= -->
+    <section id="about-us" class="about-us">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>About Us</strong></h2>
+        </div>
+
+        <div class="row content">
+          <div class="col-lg-6" data-aos="fade-right">
+            <h2>{{ about.title }}</h2>
+            
+            <img src="{{ about.image.url }}" style="height: 150; width: 250;">
+          </div>
+          <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-left">
+            <p>
+              {{ about.description }}
+            </p>
+            <ul>
+              <li><i class="ri-check-double-line"></i> {{ about.point_one }}</li>
+              <li><i class="ri-check-double-line"></i> {{ about.point_two }}</li>
+              <li><i class="ri-check-double-line"></i> {{ about.point_three }}</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  <!-- End About Us Section -->
+
+{% endblock %}

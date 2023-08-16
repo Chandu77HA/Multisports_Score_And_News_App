@@ -1,0 +1,69 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+
+Sports Detail
+
+{% endblock %}
+
+{% block body_block %}
+
+{% load static %}
+
+<br>
+
+    <!-- ======= Our Clients Section ======= -->
+        <section id="clients" class="clients">
+            <div class="container" data-aos="fade-up">
+    
+                <div class="section-title">
+                    <h2>Sports Info</h2>
+                    <h5>List of Sports we monitor and there information like rules, history and gameplay etc</h5>
+                    <p>Click on the required sports to get more info</p>
+                </div>
+    
+                <div class="row no-gutters clients-wrap clearfix" data-aos="fade-up">
+    
+                {% for sport in sports_data %}
+    
+                <div class="col-lg-3 col-md-4 col-6">
+    
+                  <!-- <a href="{{ sport.id }}" target="_blank"> -->
+                  <div class="client-logo">
+                    <h4 style="color: #5b4807"><a href="{% url 'sports_info' sport_id=sport.id %}"><b>{{sport.sport_name}}</b></a></h4>
+                    <!-- <img src="{{ sport.image.url }}" class="img-fluid" alt="{{ sport.name }}"> -->
+                  </div>
+                  </a>
+    
+                </div>
+                
+                {% endfor %}
+    
+              </div>
+    
+            </div>
+        </section>
+    <!-- End Our Clients Section -->
+
+    <div class="row justify-content-center">
+      <h3>Click on add sport buttom below to add new sport.</h3>
+    </div>
+    <br>
+
+    <div class="text-center"> <!-- Center-align content -->
+      <a href="{% url 'sports_form' %}" class="btn btn-primary btn-md">Add Sport</a>
+    </div>
+    <br>
+
+    <!-- <a href="#" class="btn btn-primary">Primary Button</a>
+    <a href="#" class="btn btn-secondary">Secondary Button</a>
+    <a href="#" class="btn btn-success">Success Button</a>
+    <a href="#" class="btn btn-danger">Danger Button</a>
+
+    <a href="#" class="btn btn-warning">Warning Button</a>
+    <a href="#" class="btn btn-info">Info Button</a>
+    <a href="#" class="btn btn-light">Light Button</a>
+    <a href="#" class="btn btn-dark">Dark Button</a>
+    <a href="#" class="btn btn-link">Link Button</a> -->
+
+{% endblock %}

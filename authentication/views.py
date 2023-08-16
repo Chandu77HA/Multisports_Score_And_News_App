@@ -5,19 +5,9 @@ from authentication.models import User
 from django.contrib.auth import login, logout, authenticate 
 
 
-
-'''Function for home page'''
-def layout(request):
-    return render(request, 'layout.html')
-
-
-'''Function for home page'''
-def home(request):
-    return render(request, 'authentication/home.html')
-
 # Create your views here.
 
-'''Function For Registration Page'''
+# Function For Registration Page
 def authregistration(request):
     
     if request.method == 'POST':
@@ -48,7 +38,7 @@ def authregistration(request):
     return render(request, 'authentication/registration.html')
 
 
-'''Function For Login Page'''
+# Function For Login Page
 def authlogin(request):
     
     if request.method == 'POST':
@@ -68,10 +58,12 @@ def authlogin(request):
         
     return render(request, 'authentication/login.html')
 
-
-
-'''Function For Logout Page'''
+# Function for Logout page
 def authlogout(request):
     logout(request)
     messages.success(request, 'Logout Successfully')
     return redirect('login')
+
+# Function for Profile page
+def profile(request):
+    return render(request, 'authentication/profile.html')
