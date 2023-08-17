@@ -50,7 +50,8 @@ def authlogin(request):
 
         if auth_user is not None:
             login(request, auth_user)
-            return redirect('home')
+            messages.success(request, 'Logged in Successfully !')
+            return redirect('sports_detail')
         
         # To display error message for invalid Email or Password
         else:
@@ -61,7 +62,7 @@ def authlogin(request):
 # Function for Logout page
 def authlogout(request):
     logout(request)
-    messages.success(request, 'Logout Successfully')
+    messages.success(request, 'Logged out Successfully !')
     return redirect('login')
 
 # Function for Profile page

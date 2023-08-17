@@ -18,9 +18,20 @@ Sports Detail
     
                 <div class="section-title">
                     <h2>Sports Info</h2>
-                    <h5>List of Sports we monitor and there information like rules, history and gameplay etc</h5>
-                    <p>Click on the required sports to get more info</p>
+                    <h5>List of Sports we monitor and there information like rules, history and gameplay etc.</h5>
+                    <p>Click on the required sports to get more information.</p>
                 </div>
+
+                {% for message in messages %}
+
+                  <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                      {{ message }}
+                  </div>
+
+                {% endfor %}
     
                 <div class="row no-gutters clients-wrap clearfix" data-aos="fade-up">
     
@@ -46,12 +57,12 @@ Sports Detail
     <!-- End Our Clients Section -->
 
     <div class="row justify-content-center">
-      <h3>Click on add sport buttom below to add new sport.</h3>
+      <h3>Click on  button below to add new sport.</h3>
     </div>
     <br>
 
     <div class="text-center"> <!-- Center-align content -->
-      <a href="{% url 'sports_form' %}" class="btn btn-primary btn-md">Add Sport</a>
+      <a href="{% url 'sports_form' %}" class="btn btn-primary btn-md">Add New Sport</a>
     </div>
     <br>
 

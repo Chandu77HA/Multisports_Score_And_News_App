@@ -44,8 +44,15 @@ Sports Info
                     <p><strong>Rules:</strong> {{ sports_info.rules }}</p>
                     <p><strong>Governing Body:</strong> {{ sports_info.governing_body }}</p>
                 </li>
+                <hr>
+
+                <h4>To delete this sport click on the delete button bellow</h4>
+                <a href="{% url 'delete_sport' sport_id=sports_info.id %}" class="btn btn-danger" onclick="return confirm('Delete This Sport')">Delete</a>
+
             </div>
         </ul>
+
+        
 
     </body>
 

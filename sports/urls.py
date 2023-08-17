@@ -6,11 +6,12 @@ urlpatterns = [
     path('sports_detail/', views.sports_detail, name = 'sports_detail'),
     path('sports_info/<int:sport_id>/', views.sports_info, name = 'sports_info'),
     path('sports_form/', views.sports_form, name = 'sports_form'),
+    path('delete_sport/<int:sport_id>/', views.delete_sport, name = 'delete_sport'),
 
 ]
 
-from django.conf import settings
-from django.conf.urls.static import static
+# from django.conf import settings
+# from django.conf.urls.static import static
 
-if settings.DEBUG:
-        urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+# if settings.DEBUG:
+#         urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
