@@ -30,8 +30,9 @@ def authregistration(request):
             else:
                 registration_user = User.objects.create_user(username=registration_username, password=registration_password, email=registration_email)
                 registration_user.save()
+                login(request, registration_user)
                 messages.success(request, 'You have Successfully Registered')
-                return redirect("home")
+                return redirect("sports_detail")
             
         else:
             messages.error(request, 'Password and Conform Password Not Matched')            

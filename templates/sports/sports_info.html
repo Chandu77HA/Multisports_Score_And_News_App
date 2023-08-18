@@ -32,14 +32,25 @@ Sports Info
             <div class="div-1">
                 <li>
                     <h3>{{ sports_info.sport_name }}</h3>
+                    {% for message in messages %}
+
+                    <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{ message }}
+                    </div>
+
+                    {% endfor %}
                     <hr>
                     <img class="centered-image" src="{{ sports_info.image.url }}" alt="{{ sport.sport_name }} Image">
                     <hr>
-                    <p><strong>Category:</strong> {{ sports_info.forrmat_type }}</p>
-                    <p><strong>Playing Area:</strong> {{ sports_info.playing_area }}</p>
+                    <p><strong>Sport Format:</strong> {{ sports_info.forrmat_type }}</p>
                     <p><strong>Number of Players:</strong> {{ sports_info.number_of_players }}</p>
-                    <p><strong>Description:</strong> {{ sports_info.description }}</p>
+                    <p><strong>Sport Category:</strong> {{ sports_info.category }}</p>
+                    <p><strong>Playing Area:</strong> {{ sports_info.playing_area }}</p>
                     <p><strong>Equipments Required:</strong> {{ sports_info.equipments_required }}</p>
+                    <p><strong>Description:</strong> {{ sports_info.description }}</p>
                     <p><strong>History:</strong> {{ sports_info.history }}</p>
                     <p><strong>Rules:</strong> {{ sports_info.rules }}</p>
                     <p><strong>Governing Body:</strong> {{ sports_info.governing_body }}</p>
@@ -48,11 +59,13 @@ Sports Info
 
                 <h4>To delete this sport click on the delete button bellow</h4>
                 <a href="{% url 'delete_sport' sport_id=sports_info.id %}" class="btn btn-danger" onclick="return confirm('Delete This Sport')">Delete</a>
+                <hr>
+                <h4>To edit this sport click on the edit button bellow</h4>
+                <a href="{% url 'edit_sport' sport_id=sports_info.id %}" class="btn btn-primary">Edit</a>
+                <hr>
 
             </div>
         </ul>
-
-        
 
     </body>
 

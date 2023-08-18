@@ -13,7 +13,7 @@ class Sport(models.Model):
     forrmat_type = models.ForeignKey(SportFormat, on_delete=models.CASCADE)
     sport_name = models.CharField(max_length=100,blank=False, unique=True)
     description = models.TextField(blank=False)
-    playing_area = models.CharField(max_length=100, blank=False)
+    playing_area = models.CharField(max_length=200, blank=False)
     equipments_required = models.TextField(blank=False)
     history = models.TextField(blank=False)
     rules = models.TextField(blank=False)
@@ -27,7 +27,7 @@ class Sport(models.Model):
     )
 
     category = models.CharField(max_length=50, choices=GAMES)
-    governing_body = models.CharField(max_length=100)
+    governing_body = models.CharField(max_length=1000)
 
     def __str__(self):
         return self.sport_name

@@ -18,27 +18,19 @@
           <body>
         
             <br><br><br>
-        
-        <div class="div-2">
-            <h2 class="text-center"><b><ul>Sports Form</b></ul></h2>
-        </div>
-        
-        <div class="div-1">
-        
-            <form method="POST" enctype="multipart/form-data">
-        
-        
-                {% csrf_token %}
-                {{sports_form.as_p}}
-        
-                <input type="submit" name="submit" value="Save Sport" class="btn btn-success">
-    
-                <br>
-                <br>
-        
-            </form>
-        
-        </div>
+            <div class="div-2">
+                <h2 class="text-center"><b><ul>Sports Form</b></ul></h2>
+            </div>
+            
+            <div class="div-1">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{sports_form.as_p}}
+            
+                    <input type="submit" name="submit" value="Save Sport" class="btn btn-success">
+                    <br><br>
+                </form>
+            </div>
         
           </body>
         </html>

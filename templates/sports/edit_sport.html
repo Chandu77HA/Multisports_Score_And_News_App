@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+    {% block title %}
+    Edit Sport
+    {% endblock %}
+
+{% block body_block %}
+
+    {% load static %}
+
+    <!DOCTYPE html>
+    <html lang="en" dir="ltr">
+    
+        <head>
+            <meta charset="utf-8">
+            <link href="{% static 'css/style_form.css' %}" rel="stylesheet">
+        </head>
+    
+        <body>
+
+            <br><br><br>
+            <div class="div-2">
+                <h2 class="text-center"><b><ul>{{ title }}</b></ul></h2>
+            </div>
+
+            <div class="div-1">
+                <form method="POST" enctype="multipart/form-data">
+                    {{ edit_from.as_p }}
+                    {% csrf_token %}
+                    <input type="submit" name="submit" value="Update" class="btn btn-info" onclick="return confirm('Need to update the changes made..?')">
+                </form>
+            </div>
+
+        </body>
+    
+    </html>
+    
+
+{% endblock %}
+
