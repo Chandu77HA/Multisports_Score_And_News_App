@@ -1,0 +1,67 @@
+{% extends 'layout.html' %}
+
+    {% block title %}
+    Indian Sports News
+    {% endblock %}
+
+{% block body_block %}
+
+    
+    {% load static %}
+    <!DOCTYPE html>
+    <html lang="en">
+
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link href="{% static 'css/sports_news.css' %}" rel="stylesheet">
+        </head>
+
+        <body>
+
+            <br><br><br>
+            <div class="div-2">
+                <h2 class="text-center"><b>{{ title }}</b></h2>
+            </div>
+
+            <div class="div-1">
+
+                <!-- CONTAINER START -->
+                <div class="row row-cols-1 row-cols-md-3">
+
+                    {% for i in articles %}
+
+                        <div class="col mb-4">
+                            <div class="card h-100">
+                                
+                                <img src="{{ i.urlToImage }}" class="card-img-top" alt="This News Is Published Without Image">
+
+                                <div class="card-body">
+
+                                    <p class="card-text">{{ i.author }}</p>
+                                    <h5 class="card-title">{{ i.title }}</h5>
+                                    <p class="card-text">{{ i.source.name }}</p>
+                                    <p class="card-text">{{ i.description }}</p>
+                                    <a href="{{ i.url }}" target="_blank" class="btn btn-success m-1">See Full News</a>
+
+                                </div>
+
+                                <div class="card-footer">
+                                    <small class="text-muted">Date: {{ i.publishedAt }}</small>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+                <!-- CONTAINER END -->
+
+            </div>
+
+        </body>
+
+    </html>
+
+{% endblock %}

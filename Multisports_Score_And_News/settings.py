@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'authentication',
     'home',
     'sports',
+    'sportsnews',
 
     # Third-Party Apps
     'rest_framework',

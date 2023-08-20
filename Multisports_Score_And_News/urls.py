@@ -22,10 +22,16 @@ from django.conf import settings
 
 urlpatterns = [
     
+
     path('admin/', admin.site.urls),
+
+    # App URLS
     path('', include('home.urls')),
     path('authentication/', include('authentication.urls')),
     path('sports/', include('sports.urls')),
+    path('sportsnews/', include('sportsnews.urls')),
+
+    # App URLS for REST API
     path('api-authentication/', include('authentication.api.urls')),
 
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

@@ -30,7 +30,7 @@ def sports_detail(request):
 # Function to display detailed particular sports information
 def sports_info(request, sport_id):
     if request.user.is_anonymous:
-        messages.add_message(request, messages.INFO, 'You must be logged in first to access that page')
+        messages.add_message(request, messages.INFO, 'You must be logged in first to access that page.')
         return redirect('login')
     else:  
         get_sports_info = Sport.objects.get(pk=sport_id)
@@ -52,8 +52,7 @@ def sports_form(request):
             sport = Sport.objects.last()
             sport.sport_name = sport.sport_name.upper()
             sport.save()
-            new_sport_name = sport.sport_name
-            messages.success(request, f"New Sport {new_sport_name} is Added Successfully")
+            messages.success(request, f"New Sport {sport.sport_name} is Added Successfully")
             return redirect('sports_detail')
         
     sport_data = {
@@ -88,3 +87,4 @@ def edit_sport(request, sport_id):
     sports_data = {'title' : 'Edit Sport',
                    'edit_from' : get_sport_form,}
     return render(request, 'sports/edit_sport.html', context = sports_data)
+
