@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from sports.models import Sport
-from django.contrib.auth.decorators import user_passes_test, login_required
 from sports import forms
 from django.shortcuts import redirect
 from django.contrib import messages

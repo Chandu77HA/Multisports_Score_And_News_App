@@ -75,11 +75,34 @@
               </li>
             </ul>
           </li> -->
-
+          
           <li><a href="{% url 'sports_detail' %}">Sports Info</a></li>
-          <li><a href="{% url 'india_sports_news' %}">Sports News</a></li>
+
+          {% if user.is_authenticated %}
+
+          <li class="drop-down"><a href="">Sports News</a>
+            <ul>
+              <li><a href="{% url 'india_sports_news' %}">Indian Sports</a></li>
+              <li><a href="{% url 'sports_top_headlines' %}">World Sports</a></li>
+              <li><a href="{% url 'world_foofball_news' %}">World Football</a></li>
+              <li><a href="{% url 'world_cricket_news' %}">World Cricket</a></li>
+              <li><a href="{% url 'world_cricket_news' %}">BBC Sport</a></li>
+            </ul>
+          </li>
+
+          {% endif %}
+
+          {% if user.is_authenticated %}
+
+          <li><a href="{% url 'logout' %}">Logout</a></li>
+
+          {% else %}
+
           <li><a href="{% url 'login' %}">Login</a></li>
           <li><a href="{% url 'registration' %}">Register</a></li>
+
+          {% endif %}
+
           <li><a href="{% url 'about_us' %}">About</a></li>
           <li><a href="{% url 'contact_us' %}">Contact</a></li>
 

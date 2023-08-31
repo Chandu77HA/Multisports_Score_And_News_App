@@ -1,0 +1,80 @@
+{% extends 'layout.html' %}
+
+    {% block title %}
+    Indian Sports News
+    {% endblock %}
+
+{% block body_block %}
+
+    
+    {% load static %}
+    <!DOCTYPE html>
+    <html lang="en">
+
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link href="{% static 'css/sports_news.css' %}" rel="stylesheet">
+        </head>
+
+        <body>
+
+            <br><br><br>
+            <div class="div-2">
+                <h2 class="text-center"><b>{{ title }}</b></h2>
+            </div>
+
+            
+            
+            <div class="div-1">
+
+                    <!-- CONTAINER START -->
+                    <div class="row row-cols-1 row-cols-md-3">
+
+                        {% for row in articles %}
+
+                        <form method="get" action="{{ row.url }}?selected_news={{ row.title }}" target="_blank">
+
+                            {% csrf_token %}
+
+                            <div class="col mb-4">
+                                <div class="card h-100">
+                                    
+                                    <img src="{{ row.urlToImage }}" class="card-img-top" alt="This News Is Published Without Image">
+
+                                    <div class="card-body">
+                                        <b></b>
+
+                                        <p class="card-text"><b>Author :</b> {{ row.author }}</p>
+                                        <h5 class="card-title"><b>Title :</b> {{ row.title }}</h5>
+                                        <p class="card-text"><b>Source :</b> {{ row.source.name }}</p>
+                                        <p class="card-text"><b>Description :</b> {{ row.description }}</p>
+
+                                        <input type="hidden" name="{{row.title}}" value="{{row.title}}">
+                                        <button type="submit" class="btn btn-success m-1">See Full News</button>
+                                        
+                                    </div>
+
+                                    <div class="card-footer">
+                                        <small class="text-muted">Date & Time: {{ row.publishedAt }}</small>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </form>
+
+                        {% endfor %}
+
+                    </div>
+                    <!-- CONTAINER END -->
+
+            </div>
+
+            
+
+        </body>
+
+    </html>
+
+{% endblock %}
