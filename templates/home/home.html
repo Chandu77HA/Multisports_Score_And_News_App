@@ -48,6 +48,26 @@ Home Page
   </section><!-- End Hero -->
 
 
+    {% if user.is_authenticated %}
+
+      <section id="contact" class="contact">
+        <div class="container">
+          <div class="row justify-content-center" data-aos="fade-up">
+            <div class="col-lg-10">
+              <div class="info-wrap">
+                <div class="row">
+                  <div class="col-lg-10 info">
+                    <h4>Welcome to Sports Pulse360</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    {% else %}
+
       <section id="contact" class="contact">
         <div class="container">
           <div class="row justify-content-center" data-aos="fade-up">
@@ -63,5 +83,7 @@ Home Page
           </div>
         </div>
       </section>
+
+    {% endif %}
 
 {% endblock %}

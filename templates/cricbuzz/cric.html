@@ -1,0 +1,49 @@
+{% extends 'cricbuzz/cricbuzz_layout.html' %}
+
+    {% block title %}
+        Match Schedule
+    {% endblock %}
+    
+{% block body_block %}
+
+<br>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+
+    {% for item in match_schedule %}
+
+        {% for match in item.scheduleAdWrapper.matchScheduleList %}
+
+            {% for match_info in match.matchInfo %}
+
+
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="card-body">
+
+                            <h4 class="card-title">Teams: {{ match_info.team1.teamName }} vs {{ match_info.team2.teamName }}</h4>
+                            <h5 class="card-text"><b>Match Description:</b> {{ match_info.matchDesc }}</h5>
+                            <p class="card-text"><b>Series Name:</b> {{ match.seriesName }}</p>
+                            <p class="card-text"><b>Match Format:</b> {{ match_info.matchFormat }}</p>
+                            <p class="card-text"><b>Venue Ground:</b> {{ match_info.venueInfo.ground }}</p>
+                            <p class="card-text"><b>Venue City:</b> {{ match_info.venueInfo.city }}</p>
+                            
+                        </div>
+
+                        <div class="card-footer">
+                            <small class="text-muted">Start Date:{{ match_info.startDate }}</small>
+                            <br>
+                            <small class="text-muted">End Date:{{ match_info.endDate }}</small>
+                        </div>
+                    </div>
+                </div>
+
+            {% endfor %}
+
+        {% endfor %}
+            
+    {% endfor %}
+
+  </div>
+
+  {% endblock %}

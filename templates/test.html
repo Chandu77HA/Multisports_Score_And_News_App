@@ -1,1 +1,72 @@
-# Test HTML page to check blanck page
+{% extends 'layout.html' %}
+
+    {% block title %}
+    International Schedule
+    {% endblock %}
+
+{% block body_block %}
+
+{% endblock %}
+{% load static %}
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="{% static 'css/sports_news.css' %}" rel="stylesheet">
+    </head>
+
+    <body>
+        <br><br><br>
+        <div class="div-2">
+            <h2 class="text-center"><b>{{ title }}</b></h2>
+        </div>
+
+        <div class="div-1">
+
+            {% for item in match_shedule.matchScheduleMap %}
+
+                {% for match in item.scheduleAdWrapper.matchScheduleList %}
+
+                    {% for match_info in match.matchInfo %}
+
+                        <!-- CONTAINER START -->
+                        <div class="row row-cols-1 row-cols-md-3">
+
+                                <div class="col mb-4">
+                                    <div class="card h-100">
+                                        
+                                        <img src="{{ i.urlToImage }}" class="card-img-top" alt="This News Is Published Without Image">
+
+                                        <div class="card-body">
+
+                                            <p class="card-text">Match Description:{{ match_info.matchDesc }}</p>
+                                            <h5 class="card-title">Teams:{{ match_info.team1.teamName }} vs {{ match_info.team2.teamName }}</h5>
+                                            <p class="card-text">Match Format:{{ match_info.matchFormat }}</p>
+                                            <p class="card-text">Start Date:{{ match_info.startDate }}</p>
+                                            <p class="card-text">End Date:{{ match_info.endDate }}</p>
+                                            <p class="card-text">Venue Ground:{{ match_info.venueInfo.ground }}</p>
+                                            <p class="card-text">Venue City:{{ match_info.venueInfo.city }}</p>
+                                        
+                                        </div>
+
+                                        <div class="card-footer">
+                                            <small class="text-muted">Date:</small>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                        </div>
+                        <!-- CONTAINER END -->
+
+                    {% endfor %}
+                
+                {% endfor %}
+
+            {% endfor %}
+        
+    </body>
+
+    </html>

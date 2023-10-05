@@ -86,11 +86,22 @@
               <li><a href="{% url 'sports_top_headlines' %}">World Sports</a></li>
               <li><a href="{% url 'world_foofball_news' %}">World Football</a></li>
               <li><a href="{% url 'world_cricket_news' %}">World Cricket</a></li>
-              <li><a href="{% url 'world_cricket_news' %}">BBC Sport</a></li>
+              <li><a href="{% url 'bbc_sports' %}">BBC Sport</a></li>
             </ul>
           </li>
 
           {% endif %}
+
+          {% if user.is_authenticated %}
+
+          <li class="drop-down"><a href="">Live Score</a>
+            <ul>
+              <li><a href="{% url 'cricbuzz_home' %}" target="_blank">Cricket</a></li>
+            </ul>
+          </li>
+
+          {% endif %}
+
 
           {% if user.is_authenticated %}
 

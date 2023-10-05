@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+
+        {% endblock %}
+    </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        
+        header {
+            background-color: #3e624b;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+        
+        nav {
+            background-color: #467849;
+            text-align: center;
+            padding: 10px 0;
+        }
+        
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 18px;
+        }
+
+        .search-box {
+            display: inline-block;
+            margin-left: 20px;
+        }
+        
+        .search-box input[type="text"] {
+            padding: 5px;
+            border: none;
+            border-radius: 3px;
+        }
+        
+        .search-box button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Cricket Update</h1>
+        <p>Your ultimate source for cricket scores, schedules, player information, rankings, and more.</p>
+    </header>
+    <nav>
+
+        <a href="{% url 'cricbuzz_home' %}">Home</a>
+        <a href="#">Scores</a>
+        <a href="#">Schedule</a>
+        <a href="#">Players</a>
+        <a href="#">Rankings</a>
+        <div class="search-box">
+            <input type="text" placeholder="Search Players">
+            <button>Search</button>
+        </div>
+    </nav>
+</body>
+</html>
+
+{% block body_block %}
+{% endblock %}

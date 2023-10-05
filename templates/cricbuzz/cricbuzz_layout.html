@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+        
+    <title>
+        {% block title %}
+
+        {% endblock %}
+    </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        
+        header {
+            background-color: #3e624b;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+        
+        nav {
+            background-color: #467849;
+            text-align: center;
+            padding: 10px 0;
+        }
+        
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 18px;
+        }
+
+        .search-box {
+            display: inline-block;
+            margin-left: 20px;
+        }
+        
+        .search-box input[type="text"] {
+            padding: 5px;
+            border: none;
+            border-radius: 3px;
+        }
+        
+        .search-box button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #bedcbe;
+            min-width: 160px;
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: #080808;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Cricket Update</h1>
+        <p>Your ultimate source for cricket scores, schedules, player information, rankings, and more.</p>
+    </header>
+    <nav>
+        <a href="{% url 'cricbuzz_home' %}">Home</a>
+        <a href="#">Scores</a>
+
+        <!-- Dropdown Menu -->
+        <div class="dropdown">
+            <a href="#">Schedule</a>
+            <div class="dropdown-content">
+
+                <a href="{% url 'schedule' 'international' %}">International</a>
+                <a href="{% url 'schedule' 'league' %}">League</a>
+                <a href="{% url 'schedule' 'domestic' %}">Domestic</a>
+                
+            </div>
+        </div>
+
+        <a href="#">Players</a>
+        <a href="#">Rankings</a>
+        <div class="search-box">
+            <input type="text" placeholder="Search Players">
+            <button>Search</button>
+        </div>
+
+        
+    </nav>
+</body>
+</html>
+
+{% block body_block %}
+{% endblock %}

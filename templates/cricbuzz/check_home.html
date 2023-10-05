@@ -1,0 +1,62 @@
+{% extends 'cricbuzz/cricbuzz_layout.html' %}
+
+    {% block title %}
+        Home Page
+    {% endblock %}
+
+{% block body_block %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket App</title>
+    <style>
+
+        .container {
+            max-width: 960px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+        <div class="container">
+
+            <h2>About Our App</h2>
+            <p>
+                Cricket Update is your one-stop destination for all things cricket. Whether you're a die-hard cricket fan or just getting started, we have you covered. Our app provides you with the latest scores, in-depth analysis, player profiles, and much more.
+            </p>
+            
+            <h2 style="text-align: center;">Key Features</h2>
+            <div class="feature">
+                <h3>Live Scores:</h3>
+                <p>Stay updated with live cricket scores from around the world.</p>
+            </div>
+            <div class="feature">
+                <h3>Schedule:</h3>
+                <p>Check out upcoming cricket matches and their schedules.</p>
+            </div>
+            <div class="feature">
+                <h3>Player Information:</h3>
+                <p>Get detailed information about your favorite cricket players.</p>
+            </div>
+            <div class="feature">
+                <h3>Rankings:</h3>
+                <p>See the latest cricket rankings for teams and players.</p>
+            </div>
+        </div>
+
+</body>
+</html>
+
+
+{% endblock %}

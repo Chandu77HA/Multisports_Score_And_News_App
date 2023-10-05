@@ -13,6 +13,7 @@ urlpatterns = [
     path('world_cricket_news/', views.world_cricket_news, name = 'world_cricket_news'),
     path('bbc_sports/', views.bbc_sports, name = 'bbc_sports'),
 
+
 ]
 
 
