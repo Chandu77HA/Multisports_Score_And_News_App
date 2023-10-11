@@ -1,0 +1,73 @@
+{% extends 'cricbuzz/cricbuzz_layout.html' %}
+
+    {% block title %}
+        Recent Matches
+    {% endblock %}
+    
+{% block body_block %}
+
+
+<br>
+
+<h2 class="text-center"><b>Recent Matches</b></h2>
+
+<br>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+
+    {% for item in match_schedule %}
+
+        <!-- <h1>{{ item.matchType }}</h1> -->
+   
+        {% for match in item.seriesMatches %}
+
+            <!-- <h1>{{ match.seriesAdWrapper }}</h1> -->
+
+            {% for row in match.seriesAdWrapper.matches %}
+
+                <!-- <h1>{{ row.matchInfo.seriesName }}</h1> -->
+
+                <!-- Print area start -->
+
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="card-body">
+
+                            <h4 class="card-title">Teams: {{ row.matchInfo.team1.teamName }} vs {{ row.matchInfo.team2.teamName }}</h4>
+                            <h5 class="card-text"><b>Match Description & Format:</b> {{ row.matchInfo.matchDesc }} - {{ row.matchInfo.matchFormat }}</h5>
+                            <p class="card-text"><b>Series Name:</b> {{ row.matchInfo.seriesName }}</p>
+                            <p class="card-text"><b>{{ row.matchInfo.team1.teamName }} :</b> {{ row.matchScore.team1Score.inngs1.runs }} - {{ row.matchScore.team1Score.inngs1.wickets }} ({{ row.matchScore.team1Score.inngs1.overs }})</p>
+                            <p class="card-text"><b>{{ row.matchInfo.team2.teamName }} :</b> {{ row.matchScore.team2Score.inngs1.runs }} - {{ row.matchScore.team2Score.inngs1.wickets }} ({{ row.matchScore.team1Score.inngs1.overs }})</p>
+                            <p class="card-text"><b>Result :</b> {{ row.matchInfo.status }}</p>
+                            <p class="card-text"><b>Venue Ground & City:</b> {{ row.matchInfo.venueInfo.ground }} - {{ row.matchInfo.venueInfo.city }}</p>
+
+                        </div>
+
+                        <div class="card-footer">
+                            <small class="text-muted">Start Date:{{ row.matchInfo.startDate }}</small>
+                            <br>
+                            <small class="text-muted">End Date:{{ row.matchInfo.endDate }}</small>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <!-- Print area end -->
+
+
+
+            {% endfor %}
+
+        {% endfor %}
+
+    {% endfor %}
+
+</div>
+
+
+{% endblock %}
+
+
+ <!-- <h1>{{ item.matchType }}</h1> -->
+    
+        <!--  for match in item.seriesMatches.seriesAdWrapper.matches -->
