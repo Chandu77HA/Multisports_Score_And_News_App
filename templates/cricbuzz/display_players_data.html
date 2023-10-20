@@ -1,0 +1,74 @@
+{% extends 'cricbuzz/cricbuzz_layout.html' %}
+
+{% block title %}
+    Players Schedule
+{% endblock %}
+
+{% block body_block %}
+
+<head>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px auto;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            border: 1px solid #e0e0e0;
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f7f7f7;
+        }
+
+        tr:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+    
+</head>
+
+<body>
+
+    <br>
+    <h2 class="text-center"><b>{{ title }}</b></h2>
+    
+    <table>
+
+        <tr>
+            <th>Django ID</th>
+            <th>Cricbuzz ID</th>
+            <th>Player Name</th>
+            <th>Team Name</th>
+            <th>Face Image ID</th>
+        </tr>
+
+        {% for player in players %}
+        <tr>
+            <td>{{ player.id }}</td>
+            <td>{{ player.cricbuzz_id }}</td>
+            <td>{{ player.player_name }}</td>
+            <td>{{ player.team_name }}</td>
+            <td>{{ player.face_image_id }}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+</body>
+
+
+{% endblock %}

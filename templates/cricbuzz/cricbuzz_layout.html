@@ -100,21 +100,37 @@
     </header>
     <nav>
         <a href="{% url 'cricbuzz_home' %}">Home</a>
-        <a href="#">Scores</a>
 
         <!-- Dropdown Menu -->
         <div class="dropdown">
+
+            <a href="#">Scores</a>
+            <div class="dropdown-content">
+
+                <a href="{% url 'recent_matches' %}">Recent</a>
+                <a href="{% url 'live_matches' %}">Live</a>
+                <a href="{% url 'upcoming_matches' %}">Upcoming</a>
+
+            </div>
+
+        </div>
+        
+        <!-- Dropdown Menu -->
+        <div class="dropdown">
+
             <a href="#">Schedule</a>
             <div class="dropdown-content">
 
                 <a href="{% url 'schedule' 'international' %}">International</a>
                 <a href="{% url 'schedule' 'league' %}">League</a>
                 <a href="{% url 'schedule' 'domestic' %}">Domestic</a>
-                
+                <a href="{% url 'schedule' 'women' %}">Women</a>
+
             </div>
+
         </div>
 
-        <a href="#">Players</a>
+        <a href="{% url 'display_players_data' %}">Players</a>
         <a href="#">Rankings</a>
         <div class="search-box">
             <input type="text" placeholder="Search Players">

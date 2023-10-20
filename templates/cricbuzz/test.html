@@ -1,54 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cricket Page</title>
-    <style>
-        /* Add your CSS styles here */
-    </style>
-</head>
-<body>
-    <!-- Navbar -->
-    <nav>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Football</a></li>
-            <li><a href="#">Basketball</a></li>
-            <li><a href="#">Tennis</a></li>
-            <li><a href="#">More Sports</a></li>
-        </ul>
-    </nav>
+{% extends 'cricbuzz/cricbuzz_layout.html' %}
 
-    <!-- Cricket Content -->
-    <div class="content">
-        <!-- Scoreboard -->
-        <section class="scoreboard">
-            <h2>Live Scores</h2>
-            <div id="live-scores">
-                <!-- Scores will be displayed here dynamically using JavaScript -->
-            </div>
-        </section>
+    {% block title %}
+        Match Schedule
+    {% endblock %}
+    
+{% block body_block %}
 
-        <!-- Schedule -->
-        <section class="schedule">
-            <h2>Upcoming Matches</h2>
-            <div id="upcoming-matches">
-                <!-- Match schedule will be displayed here dynamically using JavaScript -->
-            </div>
-        </section>
+<br>
 
-        <!-- Player Info -->
-        <section class="player-info">
-            <h2>Player Information</h2>
-            <div id="player-info">
-                <!-- Player information will be displayed here dynamically using JavaScript -->
-            </div>
-        </section>
-    </div>
+<h2 class="text-center"><b>{{ title }}</b></h2>
 
-    <script>
-        // Add your JavaScript code here to fetch and update data dynamically
-    </script>
-</body>
-</html>
+<br>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+
+    {% for item in match_schedule %}
+
+        {% for match in item.scheduleAdWrapper.matchScheduleList %}
+
+            {% for match_info in match.matchInfo %}
+
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="card-body">
+
+                            <h4 class="card-title">Teams: {{ match_info.team1.teamName }} vs {{ match_info.team2.teamName }}</h4>
+                            <h5 class="card-text"><b>Match Description:</b> {{ match_info.matchDesc }}</h5>
+                            <p class="card-text"><b>Series Name:</b> {{ match.seriesName }}</p>
+                            <p class="card-text"><b>Match Format:</b> {{ match_info.matchFormat }}</p>
+                            <p class="card-text"><b>Venue Ground:</b> {{ match_info.venueInfo.ground }}</p>
+                            <p class="card-text"><b>Venue City:</b> {{ match_info.venueInfo.city }}</p>
+                            
+                        </div>
+
+                        <div class="card-footer">
+                            <small class="text-muted">Start Date:{{ match_info.startDate }}</small>
+                            <br>
+                            <small class="text-muted">End Date:{{ match_info.endDate }}</small>
+                        </div>
+                    </div>
+                </div>
+
+            {% endfor %}
+
+        {% endfor %}
+            
+    {% endfor %}
+
+  </div>
+
+  {% endblock %}

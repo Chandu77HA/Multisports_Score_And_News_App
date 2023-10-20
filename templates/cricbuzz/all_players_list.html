@@ -1,0 +1,38 @@
+{% extends 'cricbuzz/cricbuzz_layout.html' %}
+
+{% block title %}
+    Players Schedule
+{% endblock %}
+
+{% block body_block %}
+
+<br>
+
+<h2 class="text-center"><b>{{ title }}</b></h2>
+
+<br>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+
+    {% for player in players %}
+
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-body">
+
+                    <p class="card-text"><b>Cricbuzz ID:</b> {{ player.cricbuzz_id }}</p>
+                    <p class="card-text"><b>Player Name:</b> {{ player.player_name }}</p>
+                    <p class="card-text"><b>Team Name:</b> {{ player.team_name }}</p>
+                    <p class="card-text"><b>Face Image ID:</b> {{ player.face_image_id }}</p>
+                    
+                </div>
+            </div>
+        </div>
+ 
+    {% endfor %}
+
+</div>
+
+{% endblock %}
+
+

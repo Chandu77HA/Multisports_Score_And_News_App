@@ -1,9 +1,9 @@
 {% extends 'cricbuzz/cricbuzz_layout.html' %}
 
-    {% block title %}
-        Match Schedule
-    {% endblock %}
-    
+{% block title %}
+    Match Schedule
+{% endblock %}
+
 {% block body_block %}
 
 <br>
@@ -34,9 +34,9 @@
                         </div>
 
                         <div class="card-footer">
-                            <small class="text-muted">Start Date:{{ match_info.startDate }}</small>
+                            <small class="text-muted">Start Date: <span class="start-date">{{ match_info.startDate }}</span></small>
                             <br>
-                            <small class="text-muted">End Date:{{ match_info.endDate }}</small>
+                            <small class="text-muted">End Date: <span class="end-date">{{ match_info.endDate }}</span></small>
                         </div>
                     </div>
                 </div>
@@ -49,23 +49,24 @@
 
   </div>
 
-  {% endblock %}
+  <script>
+    // Get all elements with class "start-date" and "end-date" and convert epoch timestamps to standard date format
+    document.addEventListener("DOMContentLoaded", function() {
+        var startDates = document.querySelectorAll(".start-date");
+        var endDates = document.querySelectorAll(".end-date");
 
-  '''
-  {
-    "matchScheduleMap": [
-        {
-            "scheduleAdWrapper": {
-                "date": "WED, OCT 11 2023",
-                "matchScheduleList": [
-                    {
-                        "seriesName": "CSA Provincial One-Day Challenge Division Two 2023",
-                        "matchInfo": [
-                            {
-                                "matchId": 81062,
-                                "seriesId": 7107,
-                                "matchDesc": "24th Match",
-                                "matchFormat": "ODI",
-                                "startDate": "1697009400000",
-                                "endDate": "16970687
-  '''
+        startDates.forEach(function(element) {
+            var epochTimestamp = Number(element.textContent) ; 
+            var date = new Date(epochTimestamp); // Create a Date object
+            element.textContent = date.toLocaleString(); // Update the element with the formatted date
+        });
+
+        endDates.forEach(function(element) {
+            var epochTimestamp = parseInt(element.textContent); 
+            var date = new Date(epochTimestamp); // Create a Date object
+            element.textContent = date.toLocaleString(); // Update the element with the formatted date
+        });
+    });
+</script>
+
+{% endblock %}

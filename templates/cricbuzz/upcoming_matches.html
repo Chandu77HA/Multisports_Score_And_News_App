@@ -1,15 +1,14 @@
 {% extends 'cricbuzz/cricbuzz_layout.html' %}
 
     {% block title %}
-        Recent Matches
+        Upcoming Matches
     {% endblock %}
     
 {% block body_block %}
 
-
 <br>
 
-<h2 class="text-center"><b>Recent Matches</b></h2>
+<h2 class="text-center"><b>Live Matches</b></h2>
 
 <br>
 
@@ -36,9 +35,7 @@
                             <h4 class="card-title">Teams: {{ row.matchInfo.team1.teamName }} vs {{ row.matchInfo.team2.teamName }}</h4>
                             <h5 class="card-text"><b>Match Description & Format:</b> {{ row.matchInfo.matchDesc }} - {{ row.matchInfo.matchFormat }}</h5>
                             <p class="card-text"><b>Series Name:</b> {{ row.matchInfo.seriesName }}</p>
-                            <p class="card-text"><b>{{ row.matchInfo.team1.teamName }} :</b> {{ row.matchScore.team1Score.inngs1.runs }} - {{ row.matchScore.team1Score.inngs1.wickets }} ({{ row.matchScore.team1Score.inngs1.overs }})</p>
-                            <p class="card-text"><b>{{ row.matchInfo.team2.teamName }} :</b> {{ row.matchScore.team2Score.inngs1.runs }} - {{ row.matchScore.team2Score.inngs1.wickets }} ({{ row.matchScore.team2Score.inngs1.overs }})</p>
-                            <p class="card-text"><b>Result :</b> {{ row.matchInfo.status }}</p>
+                            <p class="card-text"><b>Status :</b> {{ row.matchInfo.status }}</p>
                             <p class="card-text"><b>Venue Ground & City:</b> {{ row.matchInfo.venueInfo.ground }} - {{ row.matchInfo.venueInfo.city }}</p>
 
                         </div>
