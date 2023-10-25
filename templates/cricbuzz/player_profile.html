@@ -96,57 +96,19 @@
 </head>
 <body>
     <header>
-        <h1>Cricket Update</h1>
-        <p>Your ultimate source for cricket scores, schedules, player information, rankings, and more.</p>
+        <h1>Player Profile</h1>
     </header>
     <nav>
-        <a href="{% url 'cricbuzz_home' %}">Home</a>
 
-        <!-- Dropdown Menu -->
-        <div class="dropdown">
-
-            <a href="#">Scores</a>
-            <div class="dropdown-content">
-
-                <a href="{% url 'live_matches' %}">Live</a>
-                <a href="{% url 'recent_matches' %}">Recent</a>
-                <a href="{% url 'upcoming_matches' %}">Upcoming</a>
-
-            </div>
-
-        </div>
-        
-        <!-- Dropdown Menu -->
-        <div class="dropdown">
-
-            <a href="#">Schedule</a>
-            <div class="dropdown-content">
-
-                <a href="{% url 'schedule' 'international' %}">International</a>
-                <a href="{% url 'schedule' 'league' %}">League</a>
-                <a href="{% url 'schedule' 'domestic' %}">Domestic</a>
-                <a href="{% url 'schedule' 'women' %}">Women</a>
-
-            </div>
-
-        </div>
-
-        <a href="{% url 'display_players_data' %}">Players</a>
-        <a href="#">Rankings</a>
-
-        <div class="search-box">
-
-            <form method="post" action="{% url 'player_info' %}" target="_blank">
-                {% csrf_token %}
-                <div class="form-group d-flex align-items-center">
-                    <input type="text" class="form-control" name="search_query" placeholder="Enter player's name">
-                    <button type="submit" class="btn btn-primary">Search</button>
-                </div>
-            </form>
-            
-        </div>
+        <a href="{% url 'player_info' %}">Info</a>
+        <a href="{% url 'cricbuzz_home' %}">Batting</a>
+        <a href="{% url 'cricbuzz_home' %}">Bowling</a>
+        <a href="{% url 'cricbuzz_home' %}">Career</a>
+        <a href="{% url 'cricbuzz_home' %}">Career</a>
+        <a href="{% url 'cricbuzz_home' %}">News</a>
 
     </nav>
+
 </body>
 </html>
 

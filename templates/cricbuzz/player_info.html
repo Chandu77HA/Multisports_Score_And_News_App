@@ -1,0 +1,208 @@
+{% extends 'cricbuzz/player_profile.html' %}
+
+{% block title %}
+    Player Page
+{% endblock %}
+
+{% block body_block %}
+
+    <br>
+    <h2 class="text-center"><b>{{ title }}</b></h2>
+    <br>
+
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+    
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+    
+        .image-container {
+            text-align: center;
+        }
+    
+        .player-image {
+            max-width: 200px;
+            height: auto;
+        }
+    
+        h3 {
+            background-color: #def1e4;
+            color: #0d0d0e;
+            padding: 3px;
+        }
+    
+        table.player-info {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+    
+        table.player-info th, table.player-info td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+    
+        table.player-info th {
+            background-color: #fff;
+            color: #080808;
+        }
+    
+        table.player-info tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    
+        .player-info p {
+            line-height: 1.5;
+        }
+        .icc-rankings {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+    }
+
+    .icc-rankings th, .icc-rankings td {
+        text-align: center;
+        padding: 10px;
+        border: 1px solid #ccc;
+    }
+
+    .icc-rankings th {
+        background-color: #fff;
+        color: #080808;
+        font-weight: bold;
+    }
+
+    .icc-rankings tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    </style>
+    
+
+    <div class="container">
+        <div class="image-container">
+            <img class="player-image" src="{{ player_info.image }}" alt="Player Image">
+        </div>
+
+        <div class="text-center">
+            <h4>{{ player_info.name }}</h4>
+            <p>{{ player_info.intlTeam }}</p>
+        </div>
+
+        <h3>Personal Information</h3>
+        <table class="player-info">
+
+            {% if player_info.name %}
+            <tr>
+                <td><strong>Name:</strong></td>
+                <td>{{ player_info.name }}</td>
+            </tr>
+            {% endif %}
+
+            {% if player_info.DoB %}
+            <tr>
+                <td><strong>Date of Birth:</strong></td>
+                <td>{{ player_info.DoB }}</td>
+            </tr>
+            {% endif %}
+
+            {% if player_info.birthPlace %}
+            <tr>
+                <td><strong>Birthplace:</strong></td>
+                <td>{{ player_info.birthPlace }}</td>
+            </tr>
+            {% endif %}
+
+            {% if player_info.nickName %}
+            <tr>
+                <td><strong>Nickname:</strong></td>
+                <td>{{ player_info.nickName }}</td>
+            </tr>
+            {% endif %}
+
+            {% if player_info.height %}
+            <tr>
+                <td><strong>Height:</strong></td>
+                <td>{{ player_info.height }}</td>
+            </tr>
+            {% endif %}
+
+            {% if player_info.role %}
+            <tr>
+                <td><strong>Role:</strong></td>
+                <td>{{ player_info.role }}</td>
+            </tr>
+            {% endif %}
+
+            {% if player_info.bat %}
+            <tr>
+                <td><strong>Batting Style:</strong></td>
+                <td>{{ player_info.bat }}</td>
+            </tr>
+            {% endif %}
+
+            {% if player_info.bowl %}
+            <tr>
+                <td><strong>Bowling Style:</strong></td>
+                <td>{{ player_info.bowl }}</td>
+            </tr>
+            {% endif %}
+        </table>
+        <br>
+
+        <h3>Teams Played</h3>
+        <p>{{ player_info.teams }}</p>
+
+        <h3>ICC Rankings</h3>
+
+            <table class="icc-rankings">
+
+                <tr>
+                    <th></th>
+                    <th>Test</th>
+                    <th>ODI</th>
+                    <th>T20</th>
+                </tr>
+                <tr>
+                    <td>Bat</td>
+                    <td><b>{{ player_info.rankings.bat.0.testRank|default:"--" }}</b><br>Best:{{ player_info.rankings.bat.0.testBestRank|default:"--" }}</td>
+                    <td><b>{{ player_info.rankings.bat.0.odiRank|default:"--" }}</b><br>Best:{{ player_info.rankings.bat.0.odiBestRank|default:"--" }}</td>
+                    <td><b>{{ player_info.rankings.bat.0.t20Rank|default:"--" }}</b><br>Best:{{ player_info.rankings.bat.0.t20BestRank|default:"--" }}</td>
+                </tr>
+                <tr>
+                    <td>Bowl</td>
+                    <td><b>{{ player_info.rankings.bowl.0.testRank|default:"--" }}</b><br>Best:{{ player_info.rankings.bowl.0.testBestRank|default:"--" }}</td>
+                    <td><b>{{ player_info.rankings.bowl.0.odiRank|default:"--" }}</b><br>Best:{{ player_info.rankings.bowl.0.odiBestRank|default:"--" }}</td>
+                    <td><b>{{ player_info.rankings.bowl.0.t20Rank|default:"--" }}</b><br>Best:{{ player_info.rankings.bowl.0.t20BestRank|default:"--" }}</td>
+                </tr>
+                <tr>
+                    <td>All ROund</td>
+                    <td><b>{{ player_info.rankings.all.0.testRank|default:"--" }}</b><br>Best:{{ player_info.rankings.all.0.testBestRank|default:"--" }}</td>
+                    <td><b>{{ player_info.rankings.all.0.odiRank|default:"--" }}</b><br>Best:{{ player_info.rankings.all.0.odiBestRank|default:"--" }}</td>
+                    <td><b>{{ player_info.rankings.all.0.t20Rank|default:"--" }}</b><br>Best:{{ player_info.rankings.all.0.t20BestRank|default:"--" }}</td>
+                </tr>
+
+            </table>
+
+        <br>
+
+        <h3>Player Bio</h3>
+        <p>
+            {{ player_info.bio }}
+        </p>
+
+    </div>
+
+
+{% endblock %}

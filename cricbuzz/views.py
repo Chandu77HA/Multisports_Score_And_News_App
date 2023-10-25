@@ -3,6 +3,8 @@ import requests
 from django.http import JsonResponse
 from cricbuzz.models import AllPlayersList
 import time
+from cricbuzz.models import AllPlayersList
+from django.http import HttpResponse
 
 # Create your views here.
 
@@ -288,6 +290,7 @@ def display_players_data(request):
     # Comment the above three line to reduce the url runtime
     # It will just display all the players data that is already stored in django model (name - AllPlayersList)
     # Instead of going through cricbuzz players api
+
     players = AllPlayersList.objects.all()
     end_time = time.time()
     execution_time = end_time - start_time
@@ -297,3 +300,103 @@ def display_players_data(request):
         'players': players,
     }
     return render(request, 'cricbuzz/display_players_data.html', context)
+
+
+def player_info_api(request):
+    url = "https://cricbuzz-cricket.p.rapidapi.com/stats/v1/player/587"
+    headers = {
+        "X-RapidAPI-Key": "746759c976mshc90186a6b287f40p144e07jsn86d0bada27a2",
+        "X-RapidAPI-Host": "cricbuzz-cricket.p.rapidapi.com"
+    }
+    response = requests.get(url, headers=headers)
+    data = response.json()
+    return JsonResponse(data)
+
+def player_info(request):
+    if request.method == 'POST':
+        search_query = request.POST.get('search_query')
+        if search_query:
+            search_query = search_query.lower()
+            try:
+                check_player = AllPlayersList.objects.get(player_name__iexact=search_query)
+                if check_player is not None:
+                    cricbuzz_id = check_player.cricbuzz_id
+                    url = f"https://cricbuzz-cricket.p.rapidapi.com/stats/v1/player/{cricbuzz_id}"
+                    headers = {
+                        "X-RapidAPI-Key": "746759c976mshc90186a6b287f40p144e07jsn86d0bada27a2",
+                        "X-RapidAPI-Host": "cricbuzz-cricket.p.rapidapi.com"
+                    }
+                    response = requests.get(url, headers=headers)
+                    
+                    if response.status_code == 200:
+                        player_data = response.json()
+                        context = {
+                            'title': 'Player Information',
+                            'player_info': player_data,
+                        }
+                        return render(request, 'cricbuzz/player_info.html', context)
+                    else:
+                        return HttpResponse("Error fetching player data from the API")
+                else:
+                    return HttpResponse("Player not found")
+            except AllPlayersList.DoesNotExist:
+                return HttpResponse("Player not found")
+        else:
+            return HttpResponse("Please enter a player's name")
+
+    return render(request, 'cricbuzz/player_info.html')
+
+
+def check_player(request):
+    return render(request, 'cricbuzz/check_player.html')
+
+
+def player_batting(request):
+    url = "https://cricbuzz-cricket.p.rapidapi.com/stats/v1/player/1413/batting"
+    headers = {
+        "X-RapidAPI-Key": "746759c976mshc90186a6b287f40p144e07jsn86d0bada27a2",
+        "X-RapidAPI-Host": "cricbuzz-cricket.p.rapidapi.com"
+    }
+    response = requests.get(url, headers=headers)
+    data = response.json()
+    return JsonResponse(data)
+
+def player_batting_info(request):
+    url = "https://cricbuzz-cricket.p.rapidapi.com/stats/v1/player/1413/batting"
+    headers = {
+        "X-RapidAPI-Key": "746759c976mshc90186a6b287f40p144e07jsn86d0bada27a2",
+        "X-RapidAPI-Host": "cricbuzz-cricket.p.rapidapi.com"
+    }
+    response = requests.get(url, headers=headers)
+    data = response.json()
+    return JsonResponse(data)
+
+def player_bowling(request):
+    url = "https://cricbuzz-cricket.p.rapidapi.com/stats/v1/player/1413/bowling"
+    headers = {
+        "X-RapidAPI-Key": "746759c976mshc90186a6b287f40p144e07jsn86d0bada27a2",
+        "X-RapidAPI-Host": "cricbuzz-cricket.p.rapidapi.com"
+    }
+    response = requests.get(url, headers=headers)
+    data = response.json()
+    return JsonResponse(data)
+
+def player_news(request):
+    url = "https://cricbuzz-cricket.p.rapidapi.com/news/v1/player/1413"
+    headers = {
+        "X-RapidAPI-Key": "746759c976mshc90186a6b287f40p144e07jsn86d0bada27a2",
+        "X-RapidAPI-Host": "cricbuzz-cricket.p.rapidapi.com"
+    }
+    response = requests.get(url, headers=headers)
+    data = response.json()
+    return JsonResponse(data)
+
+def player_career(request):
+    url = "https://cricbuzz-cricket.p.rapidapi.com/stats/v1/player/1413/career"
+    headers = {
+        "X-RapidAPI-Key": "746759c976mshc90186a6b287f40p144e07jsn86d0bada27a2",
+        "X-RapidAPI-Host": "cricbuzz-cricket.p.rapidapi.com"
+    }
+    response = requests.get(url, headers=headers)
+    data = response.json()
+    return JsonResponse(data)
