@@ -30,14 +30,16 @@ urlpatterns = [
     path('all_players_list/', views.all_players_list, name = "all_players_list"),
     path('display_players_data/', views.display_players_data, name = "display_players_data"),
     path('player_info/', views.player_info, name = "player_info"),
-    path('player_batting_info/', views.player_batting_info, name = "player_batting_info"),
+    path('player_batting/', views.player_batting, name = "player_batting"),
+    path('player_bowling/', views.player_bowling, name = "player_bowling"),
+
     path('check_player/', views.check_player, name = "check_player"),
 
     # Player data JSON urls
     path('player_info_api/', views.player_info_api, name = "player_info_api"),
-    path('player_batting_info/', views.player_batting_info, name = "player_batting_info"),
-    path('player_batting/', views.player_batting, name = "player_batting"),
-    path('player_bowling/', views.player_bowling, name = "player_bowling"),
+    path('player_batting_api/', views.player_batting_api, name = "player_batting_api"),
+    path('player_bowling_api/', views.player_bowling_api, name = "player_bowling_api"),
+    
     path('player_news/', views.player_news, name = "player_news"),
     path('player_career/', views.player_career, name = "player_career"),
     

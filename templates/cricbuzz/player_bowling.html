@@ -1,0 +1,177 @@
+{% extends 'cricbuzz/player_profile.html' %}
+
+{% block title %}
+    Player Batting
+{% endblock %}
+
+{% block body_block %}
+
+<h2 class="text-center"><b>{{ title }}</b></h2>
+
+<style>
+
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        max-width: 150px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+    }
+
+    th {
+        background-color: #3498db;
+        color: #0c0b0b;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    table {
+        margin: 0 auto;
+    }
+
+</style>
+
+
+<div class="container">
+
+    <div class="table-responsive">
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Batting</th>
+                    <th>Batting Test</th>
+                    <th>ODI</th>
+                    <th>T20</th>
+                    <th>IPL</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Matches</td>
+                    <td>{{ player_bowling_data.values.0.values.1 }}</td>
+                    <td>{{ player_bowling_data.values.0.values.2 }}</td>
+                    <td>{{ player_bowling_data.values.0.values.3 }}</td>
+                    <td>{{ player_bowling_data.values.0.values.4 }}</td>
+                </tr>
+                <tr>
+                    <td>Innings</td>
+                    <td>{{ player_bowling_data.values.1.values.1 }}</td>
+                    <td>{{ player_bowling_data.values.1.values.2 }}</td>
+                    <td>{{ player_bowling_data.values.1.values.3 }}</td>
+                    <td>{{ player_bowling_data.values.1.values.4 }}</td>
+                </tr>
+                <tr>
+                    <td>Balls</td>
+                    <td>{{ player_bowling_data.values.2.values.1 }}</td>
+                    <td>{{ player_bowling_data.values.2.values.2 }}</td>
+                    <td>{{ player_bowling_data.values.2.values.3 }}</td>
+                    <td>{{ player_bowling_data.values.2.values.4 }}</td>
+                </tr>
+                <tr>
+                    <td>Runs</td>
+                    <td>{{ player_bowling_data.values.3.values.1 }}</td>
+                    <td>{{ player_bowling_data.values.3.values.2 }}</td>
+                    <td>{{ player_bowling_data.values.3.values.3 }}</td>
+                    <td>{{ player_bowling_data.values.3.values.4 }}</td>
+                </tr>
+                <tr>
+                    <td>Maidens</td>
+                    <td>{{ player_bowling_data.values.4.values.1 }}</td>
+                    <td>{{ player_bowling_data.values.4.values.2 }}</td>
+                    <td>{{ player_bowling_data.values.4.values.3 }}</td>
+                    <td>{{ player_bowling_data.values.4.values.4 }}</td>
+                </tr>
+                <tr>
+                    <td>Wickets</td>
+                    <td>{{ player_bowling_data.values.5.values.1 }}</td>
+                    <td>{{ player_bowling_data.values.5.values.2 }}</td>
+                    <td>{{ player_bowling_data.values.5.values.3 }}</td>
+                    <td>{{ player_bowling_data.values.5.values.4 }}</td>
+                </tr>
+                <tr>
+                    <td>Avg</td>
+                    <td>{{ player_bowling_data.values.6.values.1 }}</td>
+                    <td>{{ player_bowling_data.values.6.values.2 }}</td>
+                    <td>{{ player_bowling_data.values.6.values.3 }}</td>
+                    <td>{{ player_bowling_data.values.6.values.4 }}</td>
+                </tr>
+                <tr>
+                    <td>Eco</td>
+                    <td>{{ player_bowling_data.values.7.values.1 }}</td>
+                    <td>{{ player_bowling_data.values.7.values.2 }}</td>
+                    <td>{{ player_bowling_data.values.7.values.3 }}</td>
+                    <td>{{ player_bowling_data.values.7.values.4 }}</td>
+                </tr>
+                <tr>
+                    <td>SR</td>
+                    <td>{{ player_bowling_data.values.8.values.1 }}</td>
+                    <td>{{ player_bowling_data.values.8.values.2 }}</td>
+                    <td>{{ player_bowling_data.values.8.values.3 }}</td>
+                    <td>{{ player_bowling_data.values.8.values.4 }}</td>
+                </tr>
+                <tr>
+                    <td>BBI</td>
+                    <td>{{ player_bowling_data.values.9.values.1 }}</td>
+                    <td>{{ player_bowling_data.values.9.values.2 }}</td>
+                    <td>{{ player_bowling_data.values.9.values.3 }}</td>
+                    <td>{{ player_bowling_data.values.9.values.4 }}</td>
+                </tr>
+                <tr>
+                    <td>BBM</td>
+                    <td>{{ player_bowling_data.values.10.values.1 }}</td>
+                    <td>{{ player_bowling_data.values.10.values.2 }}</td>
+                    <td>{{ player_bowling_data.values.10.values.3 }}</td>
+                    <td>{{ player_bowling_data.values.10.values.4 }}</td>
+                </tr>
+                <tr>
+                    <td>4w</td>
+                    <td>{{ player_bowling_data.values.11.values.1 }}</td>
+                    <td>{{ player_bowling_data.values.11.values.2 }}</td>
+                    <td>{{ player_bowling_data.values.11.values.3 }}</td>
+                    <td>{{ player_bowling_data.values.11.values.4 }}</td>
+                </tr>
+                <tr>
+                    <td>5w</td>
+                    <td>{{ player_bowling_data.values.12.values.1 }}</td>
+                    <td>{{ player_bowling_data.values.12.values.2 }}</td>
+                    <td>{{ player_bowling_data.values.12.values.3 }}</td>
+                    <td>{{ player_bowling_data.values.12.values.4 }}</td>
+                </tr>
+                <tr>
+                    <td>10w</td>
+                    <td>{{ player_bowling_data.values.13.values.1 }}</td>
+                    <td>{{ player_bowling_data.values.13.values.2 }}</td>
+                    <td>{{ player_bowling_data.values.13.values.3 }}</td>
+                    <td>{{ player_bowling_data.values.13.values.4 }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+<br>
+
+{% endblock %}
