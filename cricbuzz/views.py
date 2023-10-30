@@ -312,6 +312,7 @@ def player_info_api(request):
     data = response.json()
     return JsonResponse(data)
 
+
 def player_info(request):
     if request.method == 'POST':
         search_query = request.POST.get('search_query')
@@ -344,9 +345,21 @@ def player_info(request):
                 return HttpResponse("Player not found")
         else:
             return HttpResponse("Please enter a player's name")
-
-    return render(request, 'cricbuzz/player_info.html')
-
+    else:
+        # Handle the case when the request method is not 'POST'
+        cricbuzz_id = request.session.get('cricbuzz_id')
+        url = f"https://cricbuzz-cricket.p.rapidapi.com/stats/v1/player/{cricbuzz_id}"
+        headers = {
+            "X-RapidAPI-Key": "746759c976mshc90186a6b287f40p144e07jsn86d0bada27a2",
+            "X-RapidAPI-Host": "cricbuzz-cricket.p.rapidapi.com"
+        }
+        response = requests.get(url, headers=headers)
+        player_info_data = response.json()
+        context = {
+            'title': 'Player Information',
+            'player_info': player_info_data,
+        }
+        return render(request, 'cricbuzz/player_info.html', context)
 
 
 def check_player(request):
@@ -411,8 +424,7 @@ def player_bowling(request):
     else:
         return HttpResponse("Cricbuzz ID not found in the session")
 
-
-def player_news(request):
+def player_news_api(request):
     url = "https://cricbuzz-cricket.p.rapidapi.com/news/v1/player/1413"
     headers = {
         "X-RapidAPI-Key": "746759c976mshc90186a6b287f40p144e07jsn86d0bada27a2",
@@ -422,7 +434,27 @@ def player_news(request):
     data = response.json()
     return JsonResponse(data)
 
-def player_career(request):
+
+def player_news(request):
+    cricbuzz_id = request.session.get('cricbuzz_id')
+    if cricbuzz_id:
+        url = f"https://cricbuzz-cricket.p.rapidapi.com/news/v1/player/{cricbuzz_id}"
+        headers = {
+            "X-RapidAPI-Key": "746759c976mshc90186a6b287f40p144e07jsn86d0bada27a2",
+            "X-RapidAPI-Host": "cricbuzz-cricket.p.rapidapi.com"
+        }
+        response = requests.get(url, headers=headers)
+        player_news_data = response.json()
+        context = {
+            'title': 'Player Career',
+            'player_news_data': player_news_data,
+        }
+        return render(request, 'cricbuzz/player_news.html', context)
+    else:
+        return HttpResponse("Cricbuzz ID not found in the session")
+
+
+def player_career_api(request):
     url = "https://cricbuzz-cricket.p.rapidapi.com/stats/v1/player/1413/career"
     headers = {
         "X-RapidAPI-Key": "746759c976mshc90186a6b287f40p144e07jsn86d0bada27a2",
@@ -431,3 +463,22 @@ def player_career(request):
     response = requests.get(url, headers=headers)
     data = response.json()
     return JsonResponse(data)
+
+def player_career(request):
+    cricbuzz_id = request.session.get('cricbuzz_id')
+    if cricbuzz_id:
+        url = f"https://cricbuzz-cricket.p.rapidapi.com/stats/v1/player/{cricbuzz_id}/career"
+        headers = {
+            "X-RapidAPI-Key": "746759c976mshc90186a6b287f40p144e07jsn86d0bada27a2",
+            "X-RapidAPI-Host": "cricbuzz-cricket.p.rapidapi.com"
+        }
+        response = requests.get(url, headers=headers)
+        player_career_data = response.json()
+        context = {
+            'title': 'Player Career',
+            'player_career_data': player_career_data,
+        }
+        return render(request, 'cricbuzz/player_career.html', context)
+    else:
+        return HttpResponse("Cricbuzz ID not found in the session")
+

@@ -1,0 +1,31 @@
+{% extends 'cricbuzz/player_profile.html' %}
+
+{% block title %}
+    Player News
+{% endblock %}
+
+{% block body_block %}
+
+<div class="container mt-4">
+    <h2 class="text-center">Player News</h2>
+
+    <div class="row mt-4">
+        {% for story in player_news_data.storyList %}
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <img src="{{ story.story.coverImage.source }}" class="card-img-top" alt="{{ story.story.coverImage.caption }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ story.story.hline }}</h5>
+                    <p class="card-text">{{ story.story.intro }}</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">{{ story.story.pubTime|date:"F j, Y" }}</small>
+                    <a href="http://www.cricbuzz.com/news/{{ story.story.id }}" class="btn btn-primary float-right" target="_blank">Read More</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

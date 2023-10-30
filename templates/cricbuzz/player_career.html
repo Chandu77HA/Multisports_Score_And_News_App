@@ -1,0 +1,45 @@
+{% extends 'cricbuzz/player_profile.html' %}
+
+{% block title %}
+    Player Career
+{% endblock %}
+
+{% block body_block %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <div class="card mt-4">
+                <div class="card-header text-center">
+                    <h2>{{ title }}</h2>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped career-table">
+                            <thead>
+                                <tr>
+                                    <th>Format</th>
+                                    <th>Debut</th>
+                                    <th>Last Played</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for entry in player_career_data.values %}
+                                <tr>
+                                    <td>{{ entry.name|upper }}</td>
+                                    <td>{{ entry.debut }}</td>
+                                    <td>{{ entry.lastPlayed }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        <p class="text-center">Click on the more infor button to get more information from cricbuzz site.</p>
+                    </div>
+                </div>
+                <div class="card-footer text-center">
+                    <a href="{{ player_career_data.appIndex.webURL }}" class="btn btn-primary" target="_blank">More Info</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
