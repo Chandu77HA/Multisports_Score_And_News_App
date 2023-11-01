@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'sports',
     'sportsnews',
     'cricbuzz',
+    'soccerhub',
 
     # Third-Party Apps
     'rest_framework',

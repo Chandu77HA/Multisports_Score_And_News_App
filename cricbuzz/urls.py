@@ -43,6 +43,23 @@ urlpatterns = [
     path('player_bowling_api/', views.player_bowling_api, name = "player_bowling_api"),
     path('player_news_api/', views.player_news_api, name = "player_news_api"),
     path('player_career_api/', views.player_career_api, name = "player_career_api"),
+
+    # Teams data JSON urls
+    path('team_list_international_api/', views.team_list_international_api, name = "team_list_international_api"),
+    path('team_list_league_api/', views.team_list_league_api, name = "team_list_league_api"),
+    path('team_list_league_api/', views.team_list_league_api, name = "team_list_league_api"),
+    path('team_list_women_api/', views.team_list_women_api, name = "team_list_women_api"),
+    path('team_schedules_api/', views.team_schedules_api, name = "team_schedules_api"),
+    path('team_results_api/', views.team_results_api, name = "team_results_api"),
+    path('team_news_api/', views.team_news_api, name = "team_news_api"),
+    path('team_players_api/', views.team_players_api, name = "team_players_api"),
+    path('team_stats_filters_api/', views.team_stats_filters_api, name = "team_stats_filters_api"),
+    path('team_stats_api/', views.team_stats_api, name = "team_stats_api"),
+
+    # Photos data JSON urls
+    path('photos_list_api/', views.photos_list_api, name = "photos_list_api"),
+    path('photos_get_gallery_api/', views.photos_get_gallery_api, name = "photos_get_gallery_api"),
+    path('get_image_api/', views.get_image_api, name = "teget_image_apiam_stats"),
     
 ]
 

@@ -482,3 +482,140 @@ def player_career(request):
     else:
         return HttpResponse("Cricbuzz ID not found in the session")
 
+# Teams
+def team_list_international_api(request):
+    url = "https://cricbuzz-cricket.p.rapidapi.com/teams/v1/international"
+    headers = {
+        "X-RapidAPI-Key": "746759c976mshc90186a6b287f40p144e07jsn86d0bada27a2",
+        "X-RapidAPI-Host": "cricbuzz-cricket.p.rapidapi.com"
+    }
+    response = requests.get(url, headers=headers)
+    data = response.json()
+    return JsonResponse(data)
+
+
+def team_list_league_api(request):
+    url = "https://cricbuzz-cricket.p.rapidapi.com/teams/v1/league"
+    headers = {
+        "X-RapidAPI-Key": "746759c976mshc90186a6b287f40p144e07jsn86d0bada27a2",
+        "X-RapidAPI-Host": "cricbuzz-cricket.p.rapidapi.com"
+    }
+    response = requests.get(url, headers=headers)
+    data = response.json()
+    return JsonResponse(data)
+
+
+def team_list_domestic_api(request):
+    url = "https://cricbuzz-cricket.p.rapidapi.com/teams/v1/domestic"
+    headers = {
+        "X-RapidAPI-Key": "746759c976mshc90186a6b287f40p144e07jsn86d0bada27a2",
+        "X-RapidAPI-Host": "cricbuzz-cricket.p.rapidapi.com"
+    }
+    response = requests.get(url, headers=headers)
+    data = response.json()
+    return JsonResponse(data)
+
+def team_list_women_api(request):
+    url = "https://cricbuzz-cricket.p.rapidapi.com/teams/v1/women"
+    headers = {
+        "X-RapidAPI-Key": "746759c976mshc90186a6b287f40p144e07jsn86d0bada27a2",
+        "X-RapidAPI-Host": "cricbuzz-cricket.p.rapidapi.com"
+    }
+    response = requests.get(url, headers=headers)
+    data = response.json()
+    return JsonResponse(data)
+
+
+def team_schedules_api(request):
+    url = "https://cricbuzz-cricket.p.rapidapi.com/teams/v1/2/schedule"
+    headers = {
+        "X-RapidAPI-Key": "746759c976mshc90186a6b287f40p144e07jsn86d0bada27a2",
+        "X-RapidAPI-Host": "cricbuzz-cricket.p.rapidapi.com"
+    }
+    response = requests.get(url, headers=headers)
+    data = response.json()
+    return JsonResponse(data)
+
+def team_results_api(request):
+    url = "https://cricbuzz-cricket.p.rapidapi.com/teams/v1/2/results"
+    headers = {
+        "X-RapidAPI-Key": "746759c976mshc90186a6b287f40p144e07jsn86d0bada27a2",
+        "X-RapidAPI-Host": "cricbuzz-cricket.p.rapidapi.com"
+    }
+    response = requests.get(url, headers=headers)
+    data = response.json()
+    return JsonResponse(data)
+
+def team_news_api(request):
+    url = "https://cricbuzz-cricket.p.rapidapi.com/news/v1/team/2"
+    headers = {
+        "X-RapidAPI-Key": "746759c976mshc90186a6b287f40p144e07jsn86d0bada27a2",
+        "X-RapidAPI-Host": "cricbuzz-cricket.p.rapidapi.com"
+    }
+    response = requests.get(url, headers=headers)
+    data = response.json()
+    return JsonResponse(data)
+
+def team_players_api(request):
+    url = "https://cricbuzz-cricket.p.rapidapi.com/teams/v1/2/players"
+    headers = {
+        "X-RapidAPI-Key": "746759c976mshc90186a6b287f40p144e07jsn86d0bada27a2",
+        "X-RapidAPI-Host": "cricbuzz-cricket.p.rapidapi.com"
+    }
+    response = requests.get(url, headers=headers)
+    data = response.json()
+    return JsonResponse(data)
+
+def team_stats_filters_api(request):
+    url = "https://cricbuzz-cricket.p.rapidapi.com/stats/v1/team/2"
+    headers = {
+        "X-RapidAPI-Key": "746759c976mshc90186a6b287f40p144e07jsn86d0bada27a2",
+        "X-RapidAPI-Host": "cricbuzz-cricket.p.rapidapi.com"
+    }
+    response = requests.get(url, headers=headers)
+    data = response.json()
+    return JsonResponse(data)
+
+def team_stats_api(request):
+    url = "https://cricbuzz-cricket.p.rapidapi.com/stats/v1/team/2"
+    querystring = {"statsType":"mostRuns"}
+    headers = {
+        "X-RapidAPI-Key": "746759c976mshc90186a6b287f40p144e07jsn86d0bada27a2",
+        "X-RapidAPI-Host": "cricbuzz-cricket.p.rapidapi.com"
+    }
+    response = requests.get(url, headers=headers, params=querystring)
+    data = response.json()
+    return JsonResponse(data)
+
+
+# Photos
+def photos_list_api(request):
+    url = "https://cricbuzz-cricket.p.rapidapi.com/photos/v1/index"
+    headers = {
+        "X-RapidAPI-Key": "746759c976mshc90186a6b287f40p144e07jsn86d0bada27a2",
+        "X-RapidAPI-Host": "cricbuzz-cricket.p.rapidapi.com"
+    }
+    response = requests.get(url, headers=headers)
+    data = response.json()
+    return JsonResponse(data)
+
+
+def photos_get_gallery_api(request):
+    url = "https://cricbuzz-cricket.p.rapidapi.com/photos/v1/detail/5754"
+    headers = {
+        "X-RapidAPI-Key": "746759c976mshc90186a6b287f40p144e07jsn86d0bada27a2",
+        "X-RapidAPI-Host": "cricbuzz-cricket.p.rapidapi.com"
+    }
+    response = requests.get(url, headers=headers)
+    data = response.json()
+    return JsonResponse(data)
+
+
+def get_image_api(request):
+    url = "https://cricbuzz-cricket.p.rapidapi.com/img/v1/i1/c2318/i.jpg"
+    headers = {
+        "X-RapidAPI-Key": "746759c976mshc90186a6b287f40p144e07jsn86d0bada27a2",
+        "X-RapidAPI-Host": "cricbuzz-cricket.p.rapidapi.com"
+    }
+    response = requests.get(url, headers=headers)
+    return JsonResponse(response)

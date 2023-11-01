@@ -22,7 +22,6 @@ from django.conf import settings
 
 urlpatterns = [
     
-
     path('admin/', admin.site.urls),
 
     # App URLS
@@ -31,6 +30,7 @@ urlpatterns = [
     path('sports/', include('sports.urls')),
     path('sportsnews/', include('sportsnews.urls')),
     path('cricbuzz/', include('cricbuzz.urls')),
+    path('soccerhub/', include('soccerhub.urls')),
 
     # App URLS for REST API
     path('api-authentication/', include('authentication.api.urls')),
