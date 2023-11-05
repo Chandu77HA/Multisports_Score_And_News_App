@@ -20,10 +20,10 @@ class InternationalTeams(models.Model):
     team_name = models.CharField(verbose_name='Team Name', max_length=500, blank=False)
     team_sub_name = models.CharField(verbose_name='Team Sub Name', max_length=50, blank=False)
     image_id = models.PositiveBigIntegerField(verbose_name='Cricbuzz Image Id', blank=False)
-    country_name = models.CharField(verbose_name='Country Name', max_length=500, blank=True)
+    country_name = models.CharField(verbose_name='Country Name', max_length=500, blank=True, null=True)
     TEAM_TYPE = (
-        ('TEST TEAM', 'Test Team'),
-        ('ASSOCIATE TEAM', 'Associate Team'),
+        ('Test Team', 'Test Team'),
+        ('Associate Team', 'Associate Team'),
     )
     team_type = models.CharField(verbose_name='Team Type', max_length=50, choices=TEAM_TYPE)
 

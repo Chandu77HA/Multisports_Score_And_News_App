@@ -56,6 +56,10 @@ urlpatterns = [
     path('team_stats_filters_api/', views.team_stats_filters_api, name = "team_stats_filters_api"),
     path('team_stats_api/', views.team_stats_api, name = "team_stats_api"),
 
+    # Teams data HTML urls
+
+    path('team_list_international/', views.team_list_international, name = "team_list_international"),
+
     # Photos data JSON urls
     path('photos_list_api/', views.photos_list_api, name = "photos_list_api"),
     path('photos_get_gallery_api/', views.photos_get_gallery_api, name = "photos_get_gallery_api"),

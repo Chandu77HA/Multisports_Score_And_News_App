@@ -1,9 +1,8 @@
 from django.shortcuts import render
 import requests
 from django.http import JsonResponse
-from cricbuzz.models import AllPlayersList
+from cricbuzz.models import AllPlayersList, InternationalTeams
 import time
-from cricbuzz.models import AllPlayersList
 from django.http import HttpResponse
 
 # Create your views here.
@@ -243,6 +242,7 @@ def all_players_list(request):
     return render(request, 'cricbuzz/all_players_list.html', context)
 
 
+
 '''
 Code refactoring is defined as the process of restructuring computer code without changing 
 or adding to its external behavior and functionality.
@@ -280,7 +280,7 @@ def save_player(player_data):
 def display_players_data(request):
     start_time = time.time()
 
-    '''
+    # '''
     player_data = get_players_cricbuzz_data()
     for player in player_data:
         save_player(player)
@@ -492,6 +492,51 @@ def team_list_international_api(request):
     response = requests.get(url, headers=headers)
     data = response.json()
     return JsonResponse(data)
+
+
+def team_list_international(request):
+    url = "https://cricbuzz-cricket.p.rapidapi.com/teams/v1/international"
+    headers = {
+        "X-RapidAPI-Key": "746759c976mshc90186a6b287f40p144e07jsn86d0bada27a2",
+        "X-RapidAPI-Host": "cricbuzz-cricket.p.rapidapi.com"
+    }
+    response = requests.get(url, headers=headers)
+    data = response.json()
+    international_team_data = data['list']
+    the_team_type = None
+    team_type = None
+    for international_team in international_team_data:
+        if len(international_team) <= 2:
+            the_team_type = international_team['teamName']
+            if the_team_type == "Test Teams":
+                team_type = "Test Team"
+            elif the_team_type == "Associate Teams":
+                team_type = "Associate Team"
+            continue
+        else:
+            cricbuzz_team_id = international_team['teamId']
+            team_name = international_team['teamName']
+            team_sub_name = international_team['teamSName']
+            image_id = international_team['imageId']
+            try:
+                country_name = international_team['countryName']
+            except KeyError:
+                country_name = None
+            if not InternationalTeams.objects.filter(cricbuzz_team_id=cricbuzz_team_id).exists():
+                InternationalTeams.objects.create(
+                    cricbuzz_team_id=cricbuzz_team_id,
+                    team_name=team_name,
+                    team_sub_name=team_sub_name,
+                    image_id=image_id,
+                    country_name=country_name,
+                    team_type=team_type
+                    )
+    international_teams = InternationalTeams.objects.all()
+    context = {
+            'title': 'International Teams',
+            'international_teams': international_teams,
+        }
+    return render(request, 'cricbuzz/Teams/international_teams.html', context)
 
 
 def team_list_league_api(request):
