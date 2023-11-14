@@ -31,6 +31,7 @@ urlpatterns = [
     path('sportsnews/', include('sportsnews.urls')),
     path('cricbuzz/', include('cricbuzz.urls')),
     path('soccerhub/', include('soccerhub.urls')),
+    path('sportsquiz/', include('sportsquiz.urls')),
 
     # App URLS for REST API
     path('api-authentication/', include('authentication.api.urls')),

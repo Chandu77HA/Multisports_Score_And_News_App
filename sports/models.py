@@ -31,3 +31,12 @@ class Sport(models.Model):
 
     def __str__(self):
         return self.sport_name
+    
+
+class AllSports(models.Model):
+    sport_name = "All Sports"  # A default name for the "All Sports" category
+    description = models.TextField(blank=True, null=True)
+    is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.sport_name
