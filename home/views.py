@@ -6,7 +6,7 @@ from authentication.models import User
 
 # Function for Home page
 def home(request):
-    slider_data = Slider.objects.all().order_by('-id')
+    slider_data = Slider.objects.all().order_by('id')
     user = User.objects.all()
     context = {
         'slider' : slider_data,

@@ -6,6 +6,13 @@ import random
 
 # Create your views here.
 
+def sports_quiz_home(request):
+    get_sports_quiz = SportsQuizCategory.objects.all().order_by('id')
+    context = {
+        'sports_data' : get_sports_quiz,
+    }
+    return render(request,'sportsquiz/sports_quiz_home.html', context)
+
 
 # Saving General Knowledge Quiz Questions in Model From API
 def general_knowledge_api(request):
@@ -191,3 +198,64 @@ def all_sports_api(request):
     questions_count = quiz_questions_list.count()
     print(questions_count)
     return JsonResponse(data)
+
+'''
+def all_sports_quiz(request):
+    if request.method == 'POST':
+        print(request.method)
+        return render(request, 'sportsquiz/quiz_results.html')
+    else:
+        category_title = 'All Sports Quiz'  # Change this to the title of the category you want to filter
+        all_questions_queryset = SportQuestionModel.objects.filter(category__title=category_title).all()
+        questions_queryset = random.sample(list(all_questions_queryset), 5)
+        all_sports_quiz_data = {
+            'questions_queryset': questions_queryset,
+            'category': category_title,
+        }
+        return render(request, 'sportsquiz/all_sports_quiz.html', all_sports_quiz_data)
+'''
+
+from django.shortcuts import render
+from django.http import HttpResponse
+
+def sports_quiz(request):
+    if request.method == 'POST':
+        # print(request.POST)
+        correct = 0
+        incorrect = 0
+        total = 0
+        score = 0
+        selected_answers = {}
+        for key, value in request.POST.items():
+            # print(key, value)
+            if key.startswith('Question_'):
+                total = total + 1
+                question_id = int(key.split('_')[1])
+                get_answer = SportQuestionModel.objects.get(pk=question_id).answer
+                if value == get_answer:
+                    correct = correct + 1
+                    score = score + 1
+                else:
+                    incorrect = incorrect + 1
+                    score = score - 0.25
+                selected_answers[question_id] = value
+        quiz_percentage = (score/total) * 100
+        quiz_result = {
+            'total':total,
+            'selected_answers': selected_answers,
+            'correct': correct,
+            'incorrect': incorrect,
+            'score': score,
+            'quiz_percentage':quiz_percentage,
+        }
+        return render(request, 'sportsquiz/quiz_results.html', quiz_result)
+    else:
+        category_title = 'All Sports Quiz'
+        # all_questions_queryset = SportQuestionModel.objects.filter(category__title=category_title)[:10]
+        all_questions_queryset = SportQuestionModel.objects.filter(category__title=category_title).all()
+        questions_queryset = random.sample(list(all_questions_queryset), 10)
+        all_sports_quiz_data = {
+            'questions_queryset': questions_queryset,
+            'category': category_title,
+        }
+        return render(request, 'sportsquiz/all_sports_quiz.html', all_sports_quiz_data)

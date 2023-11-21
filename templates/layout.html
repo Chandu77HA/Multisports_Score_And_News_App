@@ -102,12 +102,14 @@
 
           {% endif %}
 
-
           {% if user.is_authenticated %}
 
-          <li><a href="{% url 'logout' %}">Logout</a></li>
+          <li><a href="">Sports Quiz</a></li>
 
-          {% else %}
+          {% endif %}
+
+
+          {% if not user.is_authenticated %}
 
           <li><a href="{% url 'login' %}">Login</a></li>
           <li><a href="{% url 'registration' %}">Register</a></li>
