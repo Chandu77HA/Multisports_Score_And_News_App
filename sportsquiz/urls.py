@@ -10,8 +10,6 @@ urlpatterns = [
     path('all_sports_hard_api/', views.all_sports_hard_api, name = "all_sports_hard_api"),
 
     path('all_sports_api/', views.all_sports_api, name = "all_sports_api"),
-    path('sports_quiz/', views.sports_quiz, name = "sports_quiz"),
-    path('check_answers/', views.check_answers, name = "check_answers"),
-    
+    path('sports_quiz/<str:category_title>/', views.sports_quiz, name = "sports_quiz"),
     
 ]

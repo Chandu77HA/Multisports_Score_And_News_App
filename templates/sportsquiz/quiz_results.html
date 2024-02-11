@@ -1,86 +1,105 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'layout.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Result</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 20px;
-            background-color: #f5f5f5;
-            color: #333;
-        }
+{% block title %}
 
-        h1 {
-            color: #3498db;
-            text-align: center;
-        }
+Quiz Result
 
-        .result-container {
-            margin-top: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-        }
+{% endblock %}
 
-        .result-item {
-            margin-bottom: 15px;
-        }
+{% block body_block %}
 
-        .result-item strong {
-            display: inline-block;
-            width: 150px;
-            font-weight: bold;
-        }
+{% load static %}
 
-        .question-list {
-            margin-top: 20px;
-            list-style-type: none;
-            padding: 0;
-        }
+<br>
+<br>
+<br>
 
-        .question-item {
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 15px;
-            background-color: #fff;
-            box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-        }
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Quiz Result</title>
+        <style>
+            body {
+                font-family: 'Arial', sans-serif;
+                margin: 20px;
+                background-color: #f5f5f5;
+                color: #333;
+            }
 
-        .question-item strong {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: bold;
-            color: #333;
-        }
-    </style>
-</head>
+            h1 {
+                color: #49d312;
+                text-align: center;
+            }
 
-<body>
-    <h1>Quiz Result</h1>
+            .result-container {
+                margin-top: 20px;
+                background-color: #fff;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+            }
 
-    <div class="result-container">
-        <div class="result-item">
-            <strong>Total Questions:</strong> {{ total }}
+            .result-item {
+                margin-bottom: 15px;
+            }
+
+            .result-item strong {
+                display: inline-block;
+                width: 150px;
+                font-weight: bold;
+            }
+
+            .question-list {
+                margin-top: 20px;
+                list-style-type: none;
+                padding: 0;
+            }
+
+            .question-item {
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                padding: 15px;
+                margin-bottom: 15px;
+                background-color: #fff;
+                box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+            }
+
+            .question-item strong {
+                display: block;
+                margin-bottom: 10px;
+                font-weight: bold;
+                color: #333;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>Quiz Result</h1>
+
+        <div class="result-container">
+            <div class="result-item">
+                <strong>Quiz Category:</strong> {{ category_title }}
+            </div>
+            <div class="result-item">
+                <strong>Total Questions:</strong> {{ total }}
+            </div>
+            <div class="result-item">
+                <strong>Correct Answers:</strong> {{ correct }}
+            </div>
+            <div class="result-item">
+                <strong>Incorrect Answers:</strong> {{ incorrect }}
+            </div>
+            <div class="result-item">
+                <strong>Score:</strong> {{ score }}
+            </div>
+            <div class="result-item">
+                <strong>Quiz Percentage:</strong> {{ quiz_percentage }}%
+            </div>
         </div>
-        <div class="result-item">
-            <strong>Correct Answers:</strong> {{ correct }}
-        </div>
-        <div class="result-item">
-            <strong>Incorrect Answers:</strong> {{ incorrect }}
-        </div>
-        <div class="result-item">
-            <strong>Score:</strong> {{ score }}
-        </div>
-        <div class="result-item">
-            <strong>Quiz Percentage:</strong> {{ quiz_percentage }}%
-        </div>
-    </div>
 
-</body>
+    </body>
 
-</html>
+
+    <br>
+    <br>
+{% endblock %}

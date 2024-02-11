@@ -1,11 +1,5 @@
-{% extends 'cricbuzz/player_profile.html' %}
 
 
-{% block body_block %}
-
-    <br>
-    <h2 class="text-center"><b>{{ title }}</b></h2>
-    <br>
 
     <style>
         /* Add your CSS styles here */
@@ -88,9 +82,6 @@
     
 
     <div class="container">
-        <div class="image-container">
-            <img class="player-image" src="{{ player_info.image }}" alt="Player Image">
-        </div>
 
         <div class="text-center">
             <h4>{{ player_info.name }}</h4>
@@ -161,37 +152,6 @@
         <h3>Teams Played</h3>
         <p>{{ player_info.teams }}</p>
 
-        <h3>ICC Rankings</h3>
-
-            <table class="icc-rankings">
-
-                <tr>
-                    <th></th>
-                    <th>Test</th>
-                    <th>ODI</th>
-                    <th>T20</th>
-                </tr>
-                <tr>
-                    <td>Bat</td>
-                    <td><b>{{ player_info.rankings.bat.0.testRank|default:"--" }}</b><br>Best:{{ player_info.rankings.bat.0.testBestRank|default:"--" }}</td>
-                    <td><b>{{ player_info.rankings.bat.0.odiRank|default:"--" }}</b><br>Best:{{ player_info.rankings.bat.0.odiBestRank|default:"--" }}</td>
-                    <td><b>{{ player_info.rankings.bat.0.t20Rank|default:"--" }}</b><br>Best:{{ player_info.rankings.bat.0.t20BestRank|default:"--" }}</td>
-                </tr>
-                <tr>
-                    <td>Bowl</td>
-                    <td><b>{{ player_info.rankings.bowl.0.testRank|default:"--" }}</b><br>Best:{{ player_info.rankings.bowl.0.testBestRank|default:"--" }}</td>
-                    <td><b>{{ player_info.rankings.bowl.0.odiRank|default:"--" }}</b><br>Best:{{ player_info.rankings.bowl.0.odiBestRank|default:"--" }}</td>
-                    <td><b>{{ player_info.rankings.bowl.0.t20Rank|default:"--" }}</b><br>Best:{{ player_info.rankings.bowl.0.t20BestRank|default:"--" }}</td>
-                </tr>
-                <tr>
-                    <td>All ROund</td>
-                    <td><b>{{ player_info.rankings.all.0.testRank|default:"--" }}</b><br>Best:{{ player_info.rankings.all.0.testBestRank|default:"--" }}</td>
-                    <td><b>{{ player_info.rankings.all.0.odiRank|default:"--" }}</b><br>Best:{{ player_info.rankings.all.0.odiBestRank|default:"--" }}</td>
-                    <td><b>{{ player_info.rankings.all.0.t20Rank|default:"--" }}</b><br>Best:{{ player_info.rankings.all.0.t20BestRank|default:"--" }}</td>
-                </tr>
-
-            </table>
-
         <br>
 
         <h3>Player Bio</h3>
@@ -200,6 +160,3 @@
         </p>
 
     </div>
-
-
-{% endblock %}

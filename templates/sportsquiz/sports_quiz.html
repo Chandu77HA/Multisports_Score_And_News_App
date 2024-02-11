@@ -1,0 +1,165 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+
+{{ category }}
+
+{% endblock %}
+
+{% block body_block %}
+
+{% load static %}
+
+<br>
+<br>
+<br>
+
+
+<head>
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            }
+
+        header {
+                background-color: rgb(21, 158, 25);
+                color: #fff;
+                padding: 1em;
+                text-align: center;
+                position: relative; /* Ensure relative positioning for absolute positioning of timer */
+            }
+
+        #timer {
+                font-size: 20px;
+                text-align: right;
+                position: absolute;
+                top: 1em; /* Adjust this value based on your header's padding */
+                right: 1em; /* Adjust this value to position the timer to the right */
+                color: rgb(26, 24, 24);
+            }
+
+        form {
+                max-width: 800px;
+                margin: 20px auto;
+                background-color: #fff;
+                padding: 30px;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+        fieldset {
+            margin-bottom: 30px; /* Increased margin-bottom */
+            border: 1px solid #ccc;
+            border-radius: 8px; /* Increased border-radius */
+            padding: 20px; /* Increased padding */
+        }
+
+        legend {
+            font-weight: bold;
+            color: #333;
+            font-size: 24px; /* Increased font size */
+            margin-bottom: 15px; /* Increased margin-bottom */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 15px; /* Increased margin-bottom */
+            font-size: 18px; /* Increased font size */
+        }
+
+        input[type="radio"] {
+            margin-right: 10px; /* Increased margin-right */
+        }
+
+        input[type="submit"] {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 15px 20px; /* Increased padding */
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 20px; /* Increased font size */
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+        #timer {
+            font-size: 20px;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to {{ category }}</h1>
+        <div id="timer">Time remaining: <span id="countdown">5:00</span></div>
+    </header>
+
+    <form method="POST" action="">
+        {% csrf_token %}
+        {% for row in questions_queryset %}
+            <fieldset>
+                <legend>{{ row.question }}</legend>
+                <label>
+                    <input type="radio" name="Question_{{row.id}}" value="{{ row.option1 }}">
+                    {{ row.option1 }}
+                </label>
+                <label>
+                    <input type="radio" name="Question_{{row.id}}" value="{{ row.option2 }}">
+                    {{ row.option2 }}
+                </label>
+                <label>
+                    <input type="radio" name="Question_{{row.id}}" value="{{ row.option3 }}">
+                    {{ row.option3 }}
+                </label>
+                <label>
+                    <input type="radio" name="Question_{{row.id}}" value="{{ row.option4 }}">
+                    {{ row.option4 }}
+                </label>
+            </fieldset>
+        {% endfor %}
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        // Set the countdown time in seconds
+        var timeInSeconds = 300; // 5 minutes
+
+        function startTimer() {
+            var countdownElement = document.getElementById('countdown');
+
+            function updateTimer() {
+                var minutes = Math.floor(timeInSeconds / 60);
+                var seconds = timeInSeconds % 60;
+
+                countdownElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+                if (timeInSeconds > 0) {
+                    timeInSeconds--;
+                } else {
+                    // Time is up, you can submit the form or take appropriate action
+                    document.querySelector('form').submit();
+                }
+            }
+
+            // Call updateTimer every second
+            var timerInterval = setInterval(updateTimer, 1000);
+
+            // Run the timer immediately to avoid a 1-second delay at the beginning
+            updateTimer();
+        }
+
+        // Start the timer when the page loads
+        window.onload = startTimer;
+    </script>
+</body>
+
+
+
+{% endblock %}

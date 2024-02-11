@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+from django.contrib.messages import constants as messages
 from pathlib import Path
 import os
 
@@ -19,7 +20,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
-
 
 
 # Quick-start development settings - unsuitable for production
@@ -63,7 +63,7 @@ INSTALLED_APPS = [
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
-AUTH_USER_MODEL='authentication.User'
+AUTH_USER_MODEL = 'authentication.User'
 
 
 MIDDLEWARE = [
@@ -176,7 +176,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 To display messages when login logout and register
 and to display error messages when incorrect password and invalid email id
 '''
-from django.contrib.messages import constants as messages
 
 MESSAGE_TAGS = {
     messages.DEBUG: 'alert-info',
@@ -192,3 +191,10 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ]
 }
+
+
+EMAIL_HOST = 'smtp-mail.outlook.com'
+EMAIL_HOST_USER = 'mailto:chandan.ha@quadwave.com'
+EMAIL_HOST_PASSWORD = 'Access@#77'
+EMAIL_PORT = '587'
+EMAIL_USE_TLS = True

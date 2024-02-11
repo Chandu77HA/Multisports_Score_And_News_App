@@ -1,3 +1,4 @@
+from django.core.mail import EmailMessage
 from django.shortcuts import render
 import requests
 from django.http import JsonResponse
@@ -10,6 +11,7 @@ from django.http import HttpResponse
 
 def cricbuzz_home(request):
     return render(request, 'cricbuzz/cricbuzz_home.html')
+
 
 def cricbuzz_layout(request):
     return render(request, 'cricbuzz/cricbuzz_layout.html')
@@ -25,12 +27,14 @@ def recent_matches(request):
     match_json_data = response.json()
     recent_matches_data = match_json_data['typeMatches']
     match_data_recent = {
-        'title' : 'Recent Matches',
-        'match_schedule' : recent_matches_data,
+        'title': 'Recent Matches',
+        'match_schedule': recent_matches_data,
     }
-    return render(request, 'cricbuzz/recent_matches.html', context = match_data_recent)
+    return render(request, 'cricbuzz/recent_matches.html', context=match_data_recent)
 
 # To check JSON data
+
+
 def rec_matches(request):
     url = "https://cricbuzz-cricket.p.rapidapi.com/matches/v1/recent"
 
@@ -54,12 +58,14 @@ def live_matches(request):
     match_json_data = response.json()
     live_matches_data = match_json_data['typeMatches']
     match_data_live = {
-        'title' : 'Live Matches',
-        'match_schedule' : live_matches_data,
+        'title': 'Live Matches',
+        'match_schedule': live_matches_data,
     }
-    return render(request, 'cricbuzz/live_matches.html', context = match_data_live)
+    return render(request, 'cricbuzz/live_matches.html', context=match_data_live)
 
 # To check JSON data
+
+
 def l_matches(request):
     url = "https://cricbuzz-cricket.p.rapidapi.com/matches/v1/live"
 
@@ -85,10 +91,10 @@ def upcoming_matches(request):
     match_json_data = response.json()
     upcoming_matches_data = match_json_data['typeMatches']
     match_data_live = {
-        'title' : 'Upcoming Matches',
-        'match_schedule' : upcoming_matches_data,
+        'title': 'Upcoming Matches',
+        'match_schedule': upcoming_matches_data,
     }
-    return render(request, 'cricbuzz/upcoming_matches.html', context = match_data_live)
+    return render(request, 'cricbuzz/upcoming_matches.html', context=match_data_live)
 
 
 # To check JSON data
@@ -115,10 +121,11 @@ def international_schedule(request):
     json_data = response.json()
     international_schedule_data = json_data['matchScheduleMap']
     context = {
-        'title' : 'Schedule of International matches',
-        'match_schedule' : international_schedule_data,
+        'title': 'Schedule of International matches',
+        'match_schedule': international_schedule_data,
     }
     return render(request, 'cricbuzz/match_schedule.html', context)
+
 
 def league_schedule(request):
     url = "https://cricbuzz-cricket.p.rapidapi.com/schedule/v1/league"
@@ -131,10 +138,11 @@ def league_schedule(request):
     json_data = response.json()
     league_schedule_data = json_data['matchScheduleMap']
     context = {
-        'title' : 'Schedule of League matches',
-        'match_schedule' : league_schedule_data,
+        'title': 'Schedule of League matches',
+        'match_schedule': league_schedule_data,
     }
     return render(request, 'cricbuzz/match_schedule.html', context)
+
 
 def domestic_schedule(request):
     url = "https://cricbuzz-cricket.p.rapidapi.com/schedule/v1/domestic"
@@ -147,10 +155,11 @@ def domestic_schedule(request):
     json_data = response.json()
     domestic_schedule_data = json_data['matchScheduleMap']
     context = {
-        'title' : 'Schedule of Domestic matches',
-        'match_schedule' : domestic_schedule_data,
+        'title': 'Schedule of Domestic matches',
+        'match_schedule': domestic_schedule_data,
     }
     return render(request, 'cricbuzz/match_schedule.html', context)
+
 
 def women_schedule(request):
     url = "https://cricbuzz-cricket.p.rapidapi.com/schedule/v1/women"
@@ -164,10 +173,10 @@ def women_schedule(request):
     match_json_data = response.json()
     women_matches_data = match_json_data['matchScheduleMap']
     match_data_live = {
-        'title' : 'Women Matches',
-        'match_schedule' : women_matches_data,
+        'title': 'Women Matches',
+        'match_schedule': women_matches_data,
     }
-    return render(request, 'cricbuzz/match_schedule.html', context = match_data_live)
+    return render(request, 'cricbuzz/match_schedule.html', context=match_data_live)
 
 
 def schedule_view(request, schedule_type):
@@ -190,7 +199,7 @@ def schedule_view(request, schedule_type):
 
 def api_player_list(request):
     url = "https://cricbuzz-cricket.p.rapidapi.com/stats/v1/player/search"
-    querystring = {"plrN":""}
+    querystring = {"plrN": ""}
     headers = {
         "X-RapidAPI-Key": "746759c976mshc90186a6b287f40p144e07jsn86d0bada27a2",
         "X-RapidAPI-Host": "cricbuzz-cricket.p.rapidapi.com"
@@ -219,13 +228,13 @@ def all_players_list(request):
     # Iterate through player data and save if it doesn't already exist
     for player_data in data.get("player", []):
         cricbuzz_id = int(player_data.get("id"))
-        
+
         # Check if a player with the same cricbuzz_id already exists
         if not AllPlayersList.objects.filter(cricbuzz_id=cricbuzz_id).exists():
             player_name = player_data.get("name")
             team_name = player_data.get("teamName")
             face_image_id = int(player_data.get("faceImageId"))
-            
+
             # Create and save a new instance of the model
             AllPlayersList.objects.create(
                 cricbuzz_id=cricbuzz_id,
@@ -233,14 +242,13 @@ def all_players_list(request):
                 team_name=team_name,
                 face_image_id=face_image_id
             )
-    
+
     players = AllPlayersList.objects.all()
     context = {
-        'title' : 'All Players List',
+        'title': 'All Players List',
         'players': players,
     }
     return render(request, 'cricbuzz/all_players_list.html', context)
-
 
 
 '''
@@ -250,6 +258,7 @@ or adding to its external behavior and functionality.
 '''
 
 # Refractoring above function and split it in to three functions that do seperate functionality.
+
 
 def get_players_cricbuzz_data():
     url = "https://cricbuzz-cricket.p.rapidapi.com/stats/v1/player/search"
@@ -262,6 +271,7 @@ def get_players_cricbuzz_data():
     data = response.json()
     player_json_data = data['player']
     return player_json_data
+
 
 def save_player(player_data):
     cricbuzz_id = int(player_data['id'])
@@ -319,7 +329,8 @@ def player_info(request):
         if search_query:
             search_query = search_query.lower()
             try:
-                check_player = AllPlayersList.objects.get(player_name__iexact=search_query)
+                check_player = AllPlayersList.objects.get(
+                    player_name__iexact=search_query)
                 if check_player is not None:
                     cricbuzz_id = check_player.cricbuzz_id
                     request.session['cricbuzz_id'] = cricbuzz_id
@@ -329,7 +340,7 @@ def player_info(request):
                         "X-RapidAPI-Host": "cricbuzz-cricket.p.rapidapi.com"
                     }
                     response = requests.get(url, headers=headers)
-                    
+
                     if response.status_code == 200:
                         player_info_data = response.json()
                         context = {
@@ -360,6 +371,72 @@ def player_info(request):
             'player_info': player_info_data,
         }
         return render(request, 'cricbuzz/player_info.html', context)
+
+
+def send_email_to_customer(subject, body):
+    try:
+        Email_Message = EmailMessage(
+            subject=subject,
+            body=body,
+            from_email="chandan.ha@quadwave.com",
+            to=["hachandan02@gmail.com, chandanha75@gmail.com"],
+        )
+        Email_Message.send(fail_silently=False)
+
+    except Exception as e:
+        print(f"Unable to send the email due to {str(e)}")
+
+
+def send_player_info_email(request):
+    if request.method == 'POST':
+        search_query = request.POST.get('search_query')
+        if search_query:
+            search_query = search_query.lower()
+            try:
+                check_player = AllPlayersList.objects.get(
+                    player_name__iexact=search_query)
+                if check_player is not None:
+                    cricbuzz_id = check_player.cricbuzz_id
+                    request.session['cricbuzz_id'] = cricbuzz_id
+                    url = f"https://cricbuzz-cricket.p.rapidapi.com/stats/v1/player/{cricbuzz_id}"
+                    headers = {
+                        "X-RapidAPI-Key": "746759c976mshc90186a6b287f40p144e07jsn86d0bada27a2",
+                        "X-RapidAPI-Host": "cricbuzz-cricket.p.rapidapi.com"
+                    }
+                    response = requests.get(url, headers=headers)
+
+                    if response.status_code == 200:
+                        player_info_data = response.json()
+                        context = {
+                            'title': 'Player Information',
+                            'player_info': player_info_data,
+                        }
+
+                        return render(request, 'cricbuzz/player_info.html', context)
+                    else:
+                        return HttpResponse("Error fetching player data from the API")
+                else:
+                    return HttpResponse("Player not found")
+            except AllPlayersList.DoesNotExist:
+                return HttpResponse("Player not found")
+        else:
+            return HttpResponse("Please enter a player's name")
+    else:
+        # Handle the case when the request method is not 'POST'
+        cricbuzz_id = request.session.get('cricbuzz_id')
+        url = f"https://cricbuzz-cricket.p.rapidapi.com/stats/v1/player/{cricbuzz_id}"
+        headers = {
+            "X-RapidAPI-Key": "746759c976mshc90186a6b287f40p144e07jsn86d0bada27a2",
+            "X-RapidAPI-Host": "cricbuzz-cricket.p.rapidapi.com"
+        }
+        response = requests.get(url, headers=headers)
+        player_info_data = response.json()
+        context = {
+            'title': 'Player Information',
+            'player_info': player_info_data,
+        }
+        send_email_to_customer("Test", "You have viewde the profile")
+        return render(request, 'cricbuzz/send_player_info_email.html', context)
 
 
 def check_player(request):
@@ -406,6 +483,7 @@ def player_bowling_api(request):
     data = response.json()
     return JsonResponse(data)
 
+
 def player_bowling(request):
     cricbuzz_id = request.session.get('cricbuzz_id')
     if cricbuzz_id:
@@ -423,6 +501,7 @@ def player_bowling(request):
         return render(request, 'cricbuzz/player_bowling.html', context)
     else:
         return HttpResponse("Cricbuzz ID not found in the session")
+
 
 def player_news_api(request):
     url = "https://cricbuzz-cricket.p.rapidapi.com/news/v1/player/1413"
@@ -464,6 +543,7 @@ def player_career_api(request):
     data = response.json()
     return JsonResponse(data)
 
+
 def player_career(request):
     cricbuzz_id = request.session.get('cricbuzz_id')
     if cricbuzz_id:
@@ -483,6 +563,8 @@ def player_career(request):
         return HttpResponse("Cricbuzz ID not found in the session")
 
 # Teams
+
+
 def team_list_international_api(request):
     url = "https://cricbuzz-cricket.p.rapidapi.com/teams/v1/international"
     headers = {
@@ -530,12 +612,12 @@ def team_list_international(request):
                     image_id=image_id,
                     country_name=country_name,
                     team_type=team_type
-                    )
+                )
     international_teams = InternationalTeams.objects.all()
     context = {
-            'title': 'International Teams',
-            'international_teams': international_teams,
-        }
+        'title': 'International Teams',
+        'international_teams': international_teams,
+    }
     return render(request, 'cricbuzz/Teams/international_teams.html', context)
 
 
@@ -560,6 +642,7 @@ def team_list_domestic_api(request):
     data = response.json()
     return JsonResponse(data)
 
+
 def team_list_women_api(request):
     url = "https://cricbuzz-cricket.p.rapidapi.com/teams/v1/women"
     headers = {
@@ -581,6 +664,7 @@ def team_schedules_api(request):
     data = response.json()
     return JsonResponse(data)
 
+
 def team_results_api(request):
     url = "https://cricbuzz-cricket.p.rapidapi.com/teams/v1/2/results"
     headers = {
@@ -590,6 +674,7 @@ def team_results_api(request):
     response = requests.get(url, headers=headers)
     data = response.json()
     return JsonResponse(data)
+
 
 def team_news_api(request):
     url = "https://cricbuzz-cricket.p.rapidapi.com/news/v1/team/2"
@@ -601,6 +686,7 @@ def team_news_api(request):
     data = response.json()
     return JsonResponse(data)
 
+
 def team_players_api(request):
     url = "https://cricbuzz-cricket.p.rapidapi.com/teams/v1/2/players"
     headers = {
@@ -610,6 +696,7 @@ def team_players_api(request):
     response = requests.get(url, headers=headers)
     data = response.json()
     return JsonResponse(data)
+
 
 def team_stats_filters_api(request):
     url = "https://cricbuzz-cricket.p.rapidapi.com/stats/v1/team/2"
@@ -621,9 +708,10 @@ def team_stats_filters_api(request):
     data = response.json()
     return JsonResponse(data)
 
+
 def team_stats_api(request):
     url = "https://cricbuzz-cricket.p.rapidapi.com/stats/v1/team/2"
-    querystring = {"statsType":"mostRuns"}
+    querystring = {"statsType": "mostRuns"}
     headers = {
         "X-RapidAPI-Key": "746759c976mshc90186a6b287f40p144e07jsn86d0bada27a2",
         "X-RapidAPI-Host": "cricbuzz-cricket.p.rapidapi.com"

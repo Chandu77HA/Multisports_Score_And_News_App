@@ -12,14 +12,13 @@ Sports Quiz
 
 <br>
 
-    <!-- ======= Our Clients Section ======= -->
       <section id="clients" class="clients">
           <div class="container" data-aos="fade-up">
   
               <div class="section-title">
                   <h2>Sports Quiz</h2>
-                  <h5>List of Sports we monitor and there information like rules, history and gameplay etc.</h5>
-                  <p>Click on the required sports to get more information.</p>
+                  <h5>List of Quizzes Availabel are listed below</h5>
+                  <p>Click on the required quiz to get access to that quiz.</p>
               </div>
 
               {% for message in messages %}
@@ -39,10 +38,8 @@ Sports Quiz
   
               <div class="col-lg-3 col-md-4 col-6">
   
-                <!-- <a href="{{ sport.id }}" target="_blank"> -->
                 <div class="client-logo">
-                  <h4 style="color: #5b4807"><a href="{% url 'sports_quiz' %}"><b>{{sport.title}}</b></a></h4>
-                  <!-- <img src="{{ sport.image.url }}" class="img-fluid" alt="{{ sport.name }}"> -->
+                  <h4 style="color: #5b4807"><a href="{% url 'sports_quiz' category_title=sport.title %}"><b>{{sport.title}}</b></a></h4>
                 </div>
                 </a>
   
@@ -54,27 +51,5 @@ Sports Quiz
   
           </div>
       </section>
-    <!-- End Our Clients Section -->
-
-    <div class="row justify-content-center">
-      <h3>Click on  button below to add new sport.</h3>
-    </div>
-    <br>
-
-    <div class="text-center"> <!-- Center-align content -->
-      <a href="{% url 'sports_form' %}" class="btn btn-primary btn-md">Add New Sport</a>
-    </div>
-    <br>
-
-    <!-- <a href="#" class="btn btn-primary">Primary Button</a>
-    <a href="#" class="btn btn-secondary">Secondary Button</a>
-    <a href="#" class="btn btn-success">Success Button</a>
-    <a href="#" class="btn btn-danger">Danger Button</a>
-
-    <a href="#" class="btn btn-warning">Warning Button</a>
-    <a href="#" class="btn btn-info">Info Button</a>
-    <a href="#" class="btn btn-light">Light Button</a>
-    <a href="#" class="btn btn-dark">Dark Button</a>
-    <a href="#" class="btn btn-link">Link Button</a> -->
 
 {% endblock %}

@@ -212,15 +212,12 @@ def all_sports_quiz(request):
             'questions_queryset': questions_queryset,
             'category': category_title,
         }
-        return render(request, 'sportsquiz/all_sports_quiz.html', all_sports_quiz_data)
+        return render(request, 'sportsquiz/sports_quiz.html', all_sports_quiz_data)
 '''
 
-from django.shortcuts import render
-from django.http import HttpResponse
-
-def sports_quiz(request):
+def sports_quiz(request, category_title):
     if request.method == 'POST':
-        # print(request.POST)
+        print(request.POST)
         correct = 0
         incorrect = 0
         total = 0
@@ -239,8 +236,12 @@ def sports_quiz(request):
                     incorrect = incorrect + 1
                     score = score - 0.25
                 selected_answers[question_id] = value
-        quiz_percentage = (score/total) * 100
+        if score > 0:
+            quiz_percentage = (score/total) * 100
+        else:
+            quiz_percentage = 0
         quiz_result = {
+            'category_title':category_title,
             'total':total,
             'selected_answers': selected_answers,
             'correct': correct,
@@ -250,12 +251,11 @@ def sports_quiz(request):
         }
         return render(request, 'sportsquiz/quiz_results.html', quiz_result)
     else:
-        category_title = 'All Sports Quiz'
-        # all_questions_queryset = SportQuestionModel.objects.filter(category__title=category_title)[:10]
-        all_questions_queryset = SportQuestionModel.objects.filter(category__title=category_title).all()
-        questions_queryset = random.sample(list(all_questions_queryset), 10)
+        questions_queryset = SportQuestionModel.objects.filter(category__title=category_title)[:10]
+        # all_questions_queryset = SportQuestionModel.objects.filter(category__title=category_title).all()
+        # questions_queryset = random.sample(list(all_questions_queryset), 10)
         all_sports_quiz_data = {
             'questions_queryset': questions_queryset,
             'category': category_title,
         }
-        return render(request, 'sportsquiz/all_sports_quiz.html', all_sports_quiz_data)
+        return render(request, 'sportsquiz/sports_quiz.html', all_sports_quiz_data)
